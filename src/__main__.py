@@ -18,62 +18,86 @@ if str(src_path) not in sys.path:
 
 def setup_logging():
     """Configure application logging."""
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.StreamHandler(sys.stdout),
-            logging.FileHandler('bina_cshera.log', mode='a')
-        ]
-    )
+    from utils.logger import setup_logging as setup_detailed_logging
+    return setup_detailed_logging()
 
 def main():
     """Main application entry point."""
+    logger = None
     try:
-        # Setup logging
-        setup_logging()
-        logger = logging.getLogger(__name__)
-        logger.info("Starting Bina Cshera application")
+        # Setup detailed logging
+        logger = setup_logging()
+        logger.info("התחלת נגן בינה כשרה")
+        logger.log_system_info()
+        logger.log_dependencies()
         
         # Check for interface mode
         use_modern = "--modern" in sys.argv or "--qml" in sys.argv
+        logger.info(f"מצב ממשק נבחר: {'מודרני' if use_modern else 'קלאסי'}")
         
         if use_modern:
-            logger.info("Starting modern QML interface")
+            logger.start_operation("טעינת ממשק מודרני")
             try:
                 from app_modern import create_modern_application
+                logger.info("יצירת אפליקציה מודרנית")
                 app = create_modern_application()
                 if app is None:
-                    logger.warning("Failed to create modern interface, falling back to classic")
+                    logger.warning("יצירת ממשק מודרני נכשלה, עובר לממשק קלאסי")
                     use_modern = False
                 else:
+                    logger.end_operation("טעינת ממשק מודרני")
+                    logger.start_operation("הרצת אפליקציה מודרנית")
                     exit_code = app.exec()
+                    logger.end_operation("הרצת אפליקציה מודרנית")
                     app.cleanup()
-                    logger.info(f"Modern application exited with code: {exit_code}")
+                    logger.info(f"אפליקציה מודרנית הסתיימה עם קוד: {exit_code}")
                     return exit_code
             except ImportError as e:
-                logger.warning(f"Modern interface not available: {e}, using classic interface")
+                logger.end_operation("טעינת ממשק מודרני")
+                logger.warning(f"ממשק מודרני לא זמין: {e}, עובר לממשק קלאסי")
+                use_modern = False
+            except Exception as e:
+                logger.end_operation("טעינת ממשק מודרני")
+                logger.exception(f"שגיאה בממשק מודרני: {e}")
                 use_modern = False
         
         if not use_modern:
-            logger.info("Starting classic PySide6 interface")
-            from app import create_application
-            app = create_application()
-            
-            if app is None:
-                logger.error("Failed to create application")
-                return 1
+            logger.start_operation("טעינת ממשק קלאסי")
+            try:
+                from app import create_application
+                logger.info("יצירת אפליקציה קלאסית")
+                app = create_application()
                 
-            # Start the application event loop
-            exit_code = app.exec()
-            app.cleanup()
-            logger.info(f"Classic application exited with code: {exit_code}")
-            return exit_code
+                if app is None:
+                    logger.error("יצירת אפליקציה נכשלה")
+                    return 1
+                
+                logger.end_operation("טעינת ממשק קלאסי")
+                logger.start_operation("הרצת אפליקציה קלאסית")
+                
+                # Start the application event loop
+                exit_code = app.exec()
+                logger.end_operation("הרצת אפליקציה קלאסית")
+                app.cleanup()
+                logger.info(f"אפליקציה קלאסית הסתיימה עם קוד: {exit_code}")
+                return exit_code
+                
+            except Exception as e:
+                logger.end_operation("טעינת ממשק קלאסי")
+                logger.exception(f"שגיאה קריטית באפליקציה קלאסית: {e}")
+                return 1
         
     except Exception as e:
-        print(f"Fatal error starting application: {e}")
-        logging.exception("Fatal error in main()")
+        error_msg = f"שגיאה קריטית בהפעלת התוכנה: {e}"
+        print(error_msg)
+        if logger:
+            logger.exception(error_msg)
+        else:
+            logging.exception("Fatal error in main()")
         return 1
+    finally:
+        if logger:
+            logger.finalize()
 
 if __name__ == "__main__":
     sys.exit(main())

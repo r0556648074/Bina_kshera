@@ -20,6 +20,13 @@ from PySide6.QtMultimedia import QAudioFormat, QAudioSink, QMediaDevices
 
 logger = logging.getLogger(__name__)
 
+# Import detailed logger after it's available
+try:
+    from utils.logger import get_logger
+    detailed_logger = get_logger()
+except ImportError:
+    detailed_logger = None
+
 @dataclass
 class AudioMetadata:
     """Container for audio file metadata."""

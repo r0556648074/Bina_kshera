@@ -21,6 +21,13 @@ from ui.main_window import MainWindow
 
 logger = logging.getLogger(__name__)
 
+# Import detailed logger
+try:
+    from utils.logger import get_logger
+    detailed_logger = get_logger()
+except ImportError:
+    detailed_logger = None
+
 class BinaKsheraApp:
     """Main application class that manages the lifecycle and dependencies."""
     
