@@ -78,48 +78,40 @@ class AudioLoadWorker(QThread):
         try:
             self.progressUpdated.emit("מפענח קובץ BC1...")
             
-            parser = BC1Parser()
-            success = parser.load_file(self.file_path)
+            from formats.bc1_format import open_bc1
             
-            if not success:
-                self.errorOccurred.emit("לא ניתן לטעון קובץ BC1")
-                return
+            # Load BC1 file using the new function
+            bundle = open_bc1(self.file_path)
             
-            # Get audio data
-            audio_data = parser.get_audio_data()
-            if not audio_data:
-                self.errorOccurred.emit("אין נתוני אודיו בקובץ BC1")
-                return
+            self.progressUpdated.emit("מעבד אודיו מקובץ BC1...")
             
-            self.progressUpdated.emit("מעבד אודיו...")
-            
-            # For now, emit placeholder data - in real implementation would decode audio
+            # Load audio using librosa from the temporary file
+            import librosa
             import numpy as np
-            sample_rate = 44100
-            duration = 60.0  # Placeholder
-            samples = int(duration * sample_rate)
-            audio_array = np.random.random(samples).astype(np.float32) * 0.1  # Quiet random audio
             
-            self.audioLoaded.emit(audio_array, sample_rate)
+            audio_data, sample_rate = librosa.load(bundle.audio_file, sr=None, mono=True)
             
-            # Get transcript
-            transcript_segments = parser.get_transcript()
-            if transcript_segments:
-                segments_data = []
-                for segment in transcript_segments:
-                    segments_data.append({
-                        'start_time': segment.start_time,
-                        'end_time': segment.end_time,
-                        'text': segment.text,
-                        'speaker': segment.speaker,
-                        'confidence': segment.confidence
-                    })
-                
-                self.transcriptLoaded.emit(segments_data)
+            if detailed_logger:
+                detailed_logger.log_audio_operation("אודיו BC1 נטען", {
+                    "file": bundle.audio_file,
+                    "sample_rate": sample_rate,
+                    "duration": len(audio_data) / sample_rate,
+                    "samples": len(audio_data),
+                    "segments_count": len(bundle.segments)
+                })
+            
+            self.audioLoaded.emit(audio_data, sample_rate)
+            
+            # Send transcript segments
+            if bundle.segments:
+                self.transcriptLoaded.emit(bundle.segments)
+            
+            # Store bundle for cleanup later
+            self.bundle = bundle
             
             if detailed_logger:
                 detailed_logger.end_operation("טעינת אודיו ברקע")
-                detailed_logger.info("קובץ BC1 נטען בהצלחה")
+                detailed_logger.info(f"קובץ BC1 נטען בהצלחה: {len(bundle.segments)} קטעים")
             
         except Exception as e:
             if detailed_logger:

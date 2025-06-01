@@ -1,0 +1,96 @@
+שמתי בקאנבס קובץ bc1_packer_cloud.py:
+פונקציה יחידה pack_bc1(audio_bytes, transcript_jsonl, metadata=None, password=None) שמחזירה את קובץ ‎.bc1 כמערך bytes.
+
+מה אתה מכניס לפונקציה?
+
+audio_bytes –- הבייטים של קובץ האודיו שכבר תמללת (רצוי Opus / MP3 בתקנים קבועים).
+
+transcript_jsonl –- מחרוזת UTF-8 שבה כל שורה הוא JSON עם ‎start_time, end_time, text, speaker_id.
+
+metadata (dict, רשות) –- כותרת שיעור, תאריך, שם רב, משך וכד׳.
+
+password (רשות) –- סיסמה להצפנת AES-GCM; אם תשאיר ‎None – הקובץ ייווצר פתוח.
+
+הפונקציה משתמשת במודול ‎bc1_parser שכבר כתוב:
+
+יוצרת manifest, דוחסת את התמלול, מצפינה אם ביקשת, אורזת הכול ל-ZIP, מחליפה סיומת ל-.bc1, ומחזירה bytes.
+ב-Cloud Function שלך אתה רק כותב:
+
+python
+Copy
+Edit
+bc1_bytes = pack_bc1(audio.read(), transcript_text, meta, password=os.getenv("SECRET"))
+return send_file(BytesIO(bc1_bytes), download_name="lesson.bc1")
+זה כל הסיפור – קלט ↦ פלט ‎.bc1‬ אחד, בלי כאב ראש. אם תרצה לראות או לשנות את הקוד, פתח את ה-canvas ועבור על bc1_packer_cloud.py.
+
+
+
+
+
+You said:
+אני רוצה להכניס את הקובץ שמע איך שהוא בינארי ואת הJSON גם ככה ואת המטה דאה ויצא לי bc1 זה טוב? ואם כן כתוב לי את המבנה של הפונקציה שפותחת את האריזה בנגן עצמו איך היא תיראה
+
+
+ChatGPT said:
+
+Thought for 8 seconds
+ברור – אפשר להאכיל ישירות בייטים של השמע, בייטים של קובץ JSON (התמלול) וגם מילון metadata, ולהוציא ‎.bc1 אחד; לזה בדיוק נועד ה-packer.
+
+כדי שהנגן ידע “לפתוח” את החבילה, צריך בצד הנגן פונקציה קטנה (נקרא לה open_bc1()) שמרימה את התוכן מתוך הקובץ ומחזירה אובייקט עבודה שה-UI יכול להשתמש בו.
+
+מה open_bc1() עושה – שלב־שלב
+קבלת קלט – מסלול לקובץ ‎.bc1 או־-לחילופין־-אובייקט bytes/BytesIO.
+
+קריאה עם bc1_parser – שולחת ל-BC1File.load() (המחלקה שכבר יצרנו בקאנבס).
+
+בדיקות שלמות –
+
+אם ה-manifest מציין checksum – משווה.
+
+אם הקובץ מוצפן – מפענחת עם הסיסמה (אותה סיסמה שה-packer השתמש בה).
+
+חילוץ השמע – מחליטה:
+
+אם השמע ארוז כ-bytes → כותבת אותו לקובץ זמני בתיקיית cache כדי ש-FFmpeg/AudioEngine יוכלו לנגן.
+
+(אפשרות עתידית: להזרים ישירות מ-memory).
+
+חילוץ התמלול –
+
+פותחת transcript.jsonl.gz, מדה-קומפרסת, הופכת לרשימת סגמנטים [{text,start,end,speaker_id}].
+
+חילוץ מטא-דאטה – אם קיים /data/metadata.json; לא קריטי אבל נחמד לכותרת וחיפוש עתידי.
+
+בונה אובייקט חוזר – למשל PlayerBundle(audio_path, segments, metadata) – זה ה-input היחיד שה-UI וכל המנועים צריכים.
+
+חתך קצר של הממשק (פסאודו-קוד)
+python
+Copy
+Edit
+def open_bc1(bc1_source, password=None) -> PlayerBundle:
+    """
+    bc1_source  – str | Path | bytes | BytesIO
+    password    – str | None  (אם bc1 מוצפן)
+    returns     – PlayerBundle(audio_file:str, segments:list[dict], meta:dict)
+    """
+    bc1 = BC1File.load(bc1_source, password=password)   # דואג לצ’קסום/פענוח
+    tmp_audio_path = write_temp_file(bc1.audio_bytes, suffix='.'+bc1.audio_ext)
+    segments = parse_jsonl_gzip(bc1.transcript_bytes)   # מחזיר list of dicts
+    return PlayerBundle(tmp_audio_path, segments, bc1.metadata)
+PlayerBundle הוא פשוט dataclass קטן; ממנו ה-AudioEngine יקבל את הנתיב לשמע, וה-IndexEngine יקבל את רשימת הסגמנטים כדי להפעיל חיפוש והדגשות.
+
+כל הבדיקות (checksum, גרסה, דגלי קידוד) כבר נמצאות בתוך BC1File.load, אז open_bc1 נשאר קצר ופשוט.
+
+למה זה עונה לכל הצרכים
+ביטחון שתמיד יש קובץ אחד – הכול נארז ב- .bc1 כך שהמשתמש מעביר רק דבר אחד.
+
+אפס תלות חיצונית בנגן – open_bc1 מפענח לבד, כותב אודיו זמני אם צריך, ומעביר הלאה.
+
+מוכן להרחבות – אם מחר תוסיף למשל כתוביות נוספות או תמונות עטיפה, הן ייכנסו כקבצים חדשים בארכיון; BC1File.load יידע לקרוא אותן בלי לשבור את הקוד הישן.
+
+כך שבשורה התחתונה: כן, די לתת לבנאי-ענן את הבייטים של השמע, התמלול וה-metadata, לקבל ‎.bc1, ובצד הנגן להשתמש ב-open_bc1() לפי המבנה שתיארתי – וזה כל מה שצריך כדי שהמערכת תעבוד חלק.
+
+
+
+
+
