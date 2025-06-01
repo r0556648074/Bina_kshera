@@ -161,10 +161,18 @@ class AudioEngine(QObject):
     def _test_ffmpeg(self) -> bool:
         """Test FFmpeg functionality."""
         try:
+            # Hide console window on Windows
+            startupinfo = None
+            if os.name == 'nt':
+                startupinfo = subprocess.STARTUPINFO()
+                startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+                startupinfo.wShowWindow = subprocess.SW_HIDE
+            
             result = subprocess.run([self.ffmpeg_path, '-version'], 
                                   capture_output=True, 
                                   text=True, 
-                                  timeout=10)
+                                  timeout=10,
+                                  startupinfo=startupinfo)
             return result.returncode == 0
         except Exception as e:
             logger.error(f"FFmpeg test failed: {e}")

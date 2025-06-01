@@ -17,7 +17,7 @@ from PySide6.QtGui import QIcon
 
 from engine.audio_engine import AudioEngine
 from controllers.playback_controller import PlaybackController
-from ui.main_window import MainWindow
+from ui.simple_window import SimpleAudioPlayer
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,7 @@ class BinaKsheraApp:
         self.qt_app: Optional[QApplication] = None
         self.audio_engine: Optional[AudioEngine] = None
         self.playback_controller: Optional[PlaybackController] = None
-        self.main_window: Optional[MainWindow] = None
+        self.main_window: Optional[SimpleAudioPlayer] = None
         
     def initialize(self) -> bool:
         """Initialize all application components."""
@@ -61,7 +61,7 @@ class BinaKsheraApp:
             self.playback_controller = PlaybackController(self.audio_engine)
             
             # Create main window
-            self.main_window = MainWindow(self.playback_controller)
+            self.main_window = SimpleAudioPlayer(self.playback_controller)
             
             logger.info("Application initialized successfully")
             return True
