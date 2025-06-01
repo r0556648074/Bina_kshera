@@ -2,7 +2,7 @@ modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["ffmpeg-full", "freefont_ttf", "libxcrypt", "oneDNN", "pkg-config", "re2", "xsimd"]
+packages = ["cargo", "ffmpeg-full", "freefont_ttf", "glibcLocales", "libiconv", "libxcrypt", "oneDNN", "openssl", "pkg-config", "re2", "rustc", "xsimd"]
 
 [workflows]
 runButton = "Project"
