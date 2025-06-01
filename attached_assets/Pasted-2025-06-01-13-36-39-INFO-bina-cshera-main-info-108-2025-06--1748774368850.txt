@@ -1,0 +1,196 @@
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | === נגן בינה כשרה התחיל ===
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | זמן התחלה: 2025-06-01 13:36:39
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | גרסת Python: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | מערכת הפעלה: nt
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | התחלת נגן בינה כשרה
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | === מידע מערכת ===
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | מערכת הפעלה: Windows 11
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | ארכיטקטורה: AMD64
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | מעבד: Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | מידע זיכרון לא זמין (psutil לא מותקן)
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | === בדיקת תלויות ===
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | ✓ PySide6: 6.9.0
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | ✓ numpy: 2.2.6
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | ✓ scipy: 1.15.3
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | ✓ librosa: 0.11.0
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | ✓ soundfile: 0.13.1
+2025-06-01 13:36:39 | INFO     | bina_cshera_main | info:108 | ✓ audioread: 3.0.1
+2025-06-01 13:36:40 | INFO     | bina_cshera_main | info:108 | ✓ numba: 0.61.2
+2025-06-01 13:36:40 | WARNING  | bina_cshera_main | warning:113 | ✗ scikit-learn: לא מותקן
+2025-06-01 13:36:40 | INFO     | bina_cshera_main | info:108 | מתחיל ממשק יחיד ופשוט
+2025-06-01 13:36:40 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת ממשק
+2025-06-01 13:36:40 | INFO     | bina_cshera_main | info:108 | יוצר נגן אודיו פשוט ועובד
+2025-06-01 13:36:40 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: יצירת אפליקציה פשוטה
+2025-06-01 13:36:41 | INFO     | bina_cshera_main | info:108 | מחבר אותות נגן מדיה
+2025-06-01 13:36:41 | INFO     | bina_cshera_main | info:108 | אותות נגן מדיה חוברו
+2025-06-01 13:36:41 | INFO     | bina_cshera_main | info:108 | נגן אודיו פשוט נוצר ומוכן לעבודה
+2025-06-01 13:36:41 | INFO     | bina_cshera_main | info:108 | סיום פעולה: יצירת אפליקציה פשוטה (זמן: 1.661s)
+2025-06-01 13:36:41 | INFO     | bina_cshera_main | info:108 | אפליקציה פשוטה נוצרה ומוצגת
+2025-06-01 13:36:41 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת ממשק (זמן: 1.792s)
+2025-06-01 13:36:41 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: הרצת נגן פשוט
+2025-06-01 13:36:41 | INFO     | bina_cshera_main | info:108 | נגן אודיו פשוט מוכן ופועל
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 73 | volume_float: 0.730
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 72 | volume_float: 0.720
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 71 | volume_float: 0.710
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 70 | volume_float: 0.700
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 69 | volume_float: 0.690
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 68 | volume_float: 0.680
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 67 | volume_float: 0.670
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 66 | volume_float: 0.660
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 65 | volume_float: 0.650
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 64 | volume_float: 0.640
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 61 | volume_float: 0.610
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 59 | volume_float: 0.590
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 57 | volume_float: 0.570
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 56 | volume_float: 0.560
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 54 | volume_float: 0.540
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 53 | volume_float: 0.530
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 52 | volume_float: 0.520
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 51 | volume_float: 0.510
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 50 | volume_float: 0.500
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 49 | volume_float: 0.490
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 48 | volume_float: 0.480
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 47 | volume_float: 0.470
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 46 | volume_float: 0.460
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 45 | volume_float: 0.450
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 43 | volume_float: 0.430
+2025-06-01 13:36:48 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 42 | volume_float: 0.420
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 41 | volume_float: 0.410
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 40 | volume_float: 0.400
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 39 | volume_float: 0.390
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 38 | volume_float: 0.380
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 37 | volume_float: 0.370
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 36 | volume_float: 0.360
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 35 | volume_float: 0.350
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 34 | volume_float: 0.340
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 33 | volume_float: 0.330
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 32 | volume_float: 0.320
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 31 | volume_float: 0.310
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 30 | volume_float: 0.300
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 29 | volume_float: 0.290
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 28 | volume_float: 0.280
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 27 | volume_float: 0.270
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 26 | volume_float: 0.260
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 25 | volume_float: 0.250
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 24 | volume_float: 0.240
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 23 | volume_float: 0.230
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 22 | volume_float: 0.220
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 21 | volume_float: 0.210
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 20 | volume_float: 0.200
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 19 | volume_float: 0.190
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 18 | volume_float: 0.180
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 17 | volume_float: 0.170
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 16 | volume_float: 0.160
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 15 | volume_float: 0.150
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 14 | volume_float: 0.140
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 13 | volume_float: 0.130
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 12 | volume_float: 0.120
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 11 | volume_float: 0.110
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 10 | volume_float: 0.100
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 9 | volume_float: 0.090
+2025-06-01 13:36:49 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 8 | volume_float: 0.080
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 9 | volume_float: 0.090
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 10 | volume_float: 0.100
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 11 | volume_float: 0.110
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 12 | volume_float: 0.120
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 13 | volume_float: 0.130
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 14 | volume_float: 0.140
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 15 | volume_float: 0.150
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 16 | volume_float: 0.160
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 17 | volume_float: 0.170
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 18 | volume_float: 0.180
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 19 | volume_float: 0.190
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 20 | volume_float: 0.200
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 21 | volume_float: 0.210
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 22 | volume_float: 0.220
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 23 | volume_float: 0.230
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 24 | volume_float: 0.240
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 27 | volume_float: 0.270
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 28 | volume_float: 0.280
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 30 | volume_float: 0.300
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 32 | volume_float: 0.320
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 34 | volume_float: 0.340
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 35 | volume_float: 0.350
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 37 | volume_float: 0.370
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 38 | volume_float: 0.380
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 39 | volume_float: 0.390
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 40 | volume_float: 0.400
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 41 | volume_float: 0.410
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 42 | volume_float: 0.420
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 43 | volume_float: 0.430
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 44 | volume_float: 0.440
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 45 | volume_float: 0.450
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 46 | volume_float: 0.460
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 47 | volume_float: 0.470
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 48 | volume_float: 0.480
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 49 | volume_float: 0.490
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 50 | volume_float: 0.500
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 51 | volume_float: 0.510
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 52 | volume_float: 0.520
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 53 | volume_float: 0.530
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 54 | volume_float: 0.540
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 55 | volume_float: 0.550
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 56 | volume_float: 0.560
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 57 | volume_float: 0.570
+2025-06-01 13:36:50 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 58 | volume_float: 0.580
+2025-06-01 13:36:53 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: בחירת קובץ אודיו
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | פעולת קובץ: נבחר קובץ | C:/Users/oved/Downloads/מצא טוב שיף 4.mp3 | סטטוס: הצליח (גודל: 2,650,752 bytes)
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | סיום פעולה: בחירת קובץ אודיו (זמן: 5.136s)
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת קובץ אודיו
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | טוען קובץ: מצא טוב שיף 4.mp3
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | URL מדיה: file:///C:/Users/oved/Downloads/מצא טוב שיף 4.mp3
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: טוען מדיה | status_code: MediaStatus.LoadingMedia
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת קובץ אודיו (זמן: 0.000s)
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | קובץ נטען בהצלחה: מצא טוב שיף 4.mp3
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: זוהה משך | duration_ms: 110448 | duration_seconds: 110.448 | duration_formatted: 01:50
+2025-06-01 13:36:58 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: מדיה נטענה | status_code: MediaStatus.LoadedMedia
+2025-06-01 13:37:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: לחיצת נגן | current_state: PlaybackState.StoppedState | file: מצא טוב שיף 4.mp3
+2025-06-01 13:37:03 | INFO     | bina_cshera_main | info:108 | מתחיל ניגון
+2025-06-01 13:37:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב ניגון | state: מנגן | state_code: PlaybackState.PlayingState
+2025-06-01 13:37:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: מאגר מדיה | status_code: MediaStatus.BufferingMedia
+2025-06-01 13:37:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: מדיה מאוגרת | status_code: MediaStatus.BufferedMedia
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 59 | volume_float: 0.590
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 60 | volume_float: 0.600
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 61 | volume_float: 0.610
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 62 | volume_float: 0.620
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 63 | volume_float: 0.630
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 64 | volume_float: 0.640
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 65 | volume_float: 0.650
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 66 | volume_float: 0.660
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 67 | volume_float: 0.670
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 68 | volume_float: 0.680
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 69 | volume_float: 0.690
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 70 | volume_float: 0.700
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 71 | volume_float: 0.710
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 72 | volume_float: 0.720
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 73 | volume_float: 0.730
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 74 | volume_float: 0.740
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 75 | volume_float: 0.750
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 76 | volume_float: 0.760
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 77 | volume_float: 0.770
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 78 | volume_float: 0.780
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 79 | volume_float: 0.790
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 80 | volume_float: 0.800
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 81 | volume_float: 0.810
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 83 | volume_float: 0.830
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 84 | volume_float: 0.840
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 85 | volume_float: 0.850
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 87 | volume_float: 0.870
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 88 | volume_float: 0.880
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 90 | volume_float: 0.900
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 91 | volume_float: 0.910
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 92 | volume_float: 0.920
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 93 | volume_float: 0.930
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 94 | volume_float: 0.940
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 95 | volume_float: 0.950
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 96 | volume_float: 0.960
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 97 | volume_float: 0.970
+2025-06-01 13:37:06 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי עוצמה | volume_percent: 98 | volume_float: 0.980
+2025-06-01 13:38:53 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב ניגון | state: עצר | state_code: PlaybackState.StoppedState
+2025-06-01 13:38:53 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: סוף מדיה | status_code: MediaStatus.EndOfMedia
+2025-06-01 13:38:56 | INFO     | bina_cshera_main | info:108 | התחלת דילוג
+2025-06-01 13:38:57 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: דילוג | to_position_ms: 36226.944 | to_position_seconds: 36.227
+2025-06-01 13:38:57 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: מדיה נטענה | status_code: MediaStatus.LoadedMedia
+2025-06-01 13:39:05 | INFO     | bina_cshera_main | info:108 | סיום פעולה: הרצת נגן פשוט (זמן: 143.260s)
+2025-06-01 13:39:05 | INFO     | bina_cshera_main | info:108 | הנגן הפשוט הסתיים עם קוד: 0
+2025-06-01 13:39:05 | INFO     | bina_cshera_main | info:108 | === סיום תוכנה ===
