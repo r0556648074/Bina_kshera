@@ -201,7 +201,7 @@ class PlayerBundle:
 
     def cleanup(self):
         """Clean up temporary files."""
-        for file_path in self.cleanup_files:
+        for file_path in (self.cleanup_files or []):
             try:
                 if os.path.exists(file_path):
                     os.unlink(file_path)
@@ -379,7 +379,7 @@ class BC1File:
         
         # Create temporary file
         if suffix is None:
-            suffix = f'.{self.audio_ext}'
+            suffix = f'.{self.audio_ext}' if self.audio_ext else '.mp3'
         
         temp_fd, temp_path = tempfile.mkstemp(suffix=suffix, prefix='bc1_audio_')
         

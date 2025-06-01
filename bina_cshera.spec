@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 block_cipher = None
-APP_NAME = 'נגן_בינה_כשרה_מתקדם'
+APP_NAME = 'bina_cshera_advanced'
 MAIN_SCRIPT = 'src/__main__.py'
 FFMPEG_SOURCE_PATH = 'src/resources/ffmpeg/ffmpeg.exe'
 FFMPEG_DEST_SUBDIR = '.'

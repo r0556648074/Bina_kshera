@@ -45,15 +45,23 @@ jobs:
       - name: Build executable with PyInstaller
         run: pyinstaller --log-level DEBUG bina_cshera.spec
 
+      - name: List build output (for debugging)
+        if: always()
+        run: |
+          echo "Contents of dist:"
+          dir dist
+          echo "Contents of build:"
+          dir build
+
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
         with:
           name: BinaKshera-Windows-EXE
-          path: dist/bina_cshera/
+          path: dist/bina_cshera_advanced/
 
       - name: Upload Build Directory artifact (for debugging)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: PyInstaller-Build-Dir-Windows
-          path: build/bina_cshera/
+          path: build/bina_cshera_advanced/
