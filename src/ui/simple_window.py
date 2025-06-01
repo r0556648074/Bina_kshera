@@ -21,6 +21,13 @@ from controllers.simple_playback_controller import SimplePlaybackController, Pla
 
 logger = logging.getLogger(__name__)
 
+# Import detailed logger
+try:
+    from utils.logger import get_logger
+    detailed_logger = get_logger()
+except ImportError:
+    detailed_logger = None
+
 class ModernButton(QPushButton):
     """Modern styled button with rounded corners."""
     
@@ -281,27 +288,70 @@ class SimpleAudioPlayer(QMainWindow):
     
     def _open_file(self):
         """Open file dialog to select audio file."""
-        file_path, _ = QFileDialog.getOpenFileName(
-            self,
-            "בחר קובץ אודיו",
-            "",
-            "Audio Files (*.mp3 *.wav *.flac *.ogg *.m4a);;All Files (*)"
-        )
-        
-        if file_path:
-            self.status_label.setText(f"טוען קובץ: {Path(file_path).name}")
-            success = self.playback_controller.load_file(file_path)
-            if not success:
-                self.status_label.setText("שגיאה בטעינת הקובץ")
+        try:
+            if detailed_logger:
+                detailed_logger.start_operation("פתיחת דיאלוג בחירת קובץ")
+                detailed_logger.log_ui_operation("פתיחת דיאלוג", "QFileDialog")
+            
+            file_path, _ = QFileDialog.getOpenFileName(
+                self,
+                "בחר קובץ אודיו",
+                "",
+                "Audio Files (*.mp3 *.wav *.flac *.ogg *.m4a *.aac *.wma);;All Files (*)"
+            )
+            
+            if file_path:
+                if detailed_logger:
+                    detailed_logger.end_operation("פתיחת דיאלוג בחירת קובץ")
+                    detailed_logger.log_file_operation("נבחר קובץ", file_path, True, 
+                                                     size=Path(file_path).stat().st_size if Path(file_path).exists() else 0)
+                
+                self.status_label.setText(f"טוען קובץ: {Path(file_path).name}")
+                success = self.playback_controller.load_file(file_path)
+                
+                if not success:
+                    self.status_label.setText("שגיאה בטעינת הקובץ")
+                    if detailed_logger:
+                        detailed_logger.error(f"טעינת קובץ נכשלה: {file_path}")
+                else:
+                    if detailed_logger:
+                        detailed_logger.info(f"קובץ נטען בהצלחה: {Path(file_path).name}")
+            else:
+                if detailed_logger:
+                    detailed_logger.end_operation("פתיחת דיאלוג בחירת קובץ")
+                    detailed_logger.info("המשתמש ביטל בחירת קובץ")
+                
+        except Exception as e:
+            if detailed_logger:
+                detailed_logger.exception(f"שגיאה בפתיחת דיאלוג קובץ: {e}")
+            self.status_label.setText(f"שגיאה: {e}")
     
     def _toggle_play(self):
         """Toggle play/pause."""
-        current_state = self.playback_controller.get_current_state()
-        
-        if current_state == PlaybackState.PLAYING:
-            self.playback_controller.pause()
-        else:
-            self.playback_controller.play()
+        try:
+            current_state = self.playback_controller.get_current_state()
+            
+            if detailed_logger:
+                detailed_logger.log_ui_operation("לחיצה על נגן/השהה", "play_button", 
+                                                current_state=current_state)
+            
+            if current_state == PlaybackState.PLAYING:
+                if detailed_logger:
+                    detailed_logger.info("משתמש לחץ להשהות ניגון")
+                self.playback_controller.pause()
+            else:
+                if detailed_logger:
+                    detailed_logger.info("משתמש לחץ להתחיל ניגון")
+                success = self.playback_controller.play()
+                if not success:
+                    self.status_label.setText("לא ניתן להתחיל ניגון")
+                    if detailed_logger:
+                        detailed_logger.error("ניגון לא התחיל - בדוק אם קובץ נטען")
+                        
+        except Exception as e:
+            if detailed_logger:
+                detailed_logger.exception(f"שגיאה בלחיצה על כפתור ניגון: {e}")
+            self.status_label.setText(f"שגיאה: {e}")
     
     def _stop(self):
         """Stop playback."""

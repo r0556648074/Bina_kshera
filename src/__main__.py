@@ -36,27 +36,28 @@ def main():
         logger.start_operation("טעינת ממשק")
         
         try:
-            from app import create_application
-            logger.info("יוצר אפליקציה")
-            app = create_application()
+            from simple_audio_app import create_simple_audio_app
+            logger.info("יוצר נגן אודיו פשוט ועובד")
             
-            if app is None:
-                logger.error("יצירת אפליקציה נכשלה")
+            app, window = create_simple_audio_app()
+            
+            if app is None or window is None:
+                logger.error("יצירת נגן פשוט נכשלה")
                 return 1
             
             logger.end_operation("טעינת ממשק")
-            logger.start_operation("הרצת אפליקציה")
+            logger.start_operation("הרצת נגן פשוט")
+            logger.info("נגן אודיו פשוט מוכן ופועל")
             
             # Start the application event loop
             exit_code = app.exec()
-            logger.end_operation("הרצת אפליקציה")
-            app.cleanup()
-            logger.info(f"האפליקציה הסתיימה עם קוד: {exit_code}")
+            logger.end_operation("הרצת נגן פשוט")
+            logger.info(f"הנגן הפשוט הסתיים עם קוד: {exit_code}")
             return exit_code
             
         except Exception as e:
             logger.end_operation("טעינת ממשק")
-            logger.exception(f"שגיאה בהפעלת האפליקציה: {e}")
+            logger.exception(f"שגיאה בהפעלת הנגן הפשוט: {e}")
             return 1
         
     except Exception as e:

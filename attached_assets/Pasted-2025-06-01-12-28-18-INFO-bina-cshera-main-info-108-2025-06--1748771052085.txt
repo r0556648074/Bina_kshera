@@ -1,0 +1,27 @@
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | === נגן בינה כשרה התחיל ===
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | זמן התחלה: 2025-06-01 12:28:18
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | גרסת Python: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | מערכת הפעלה: nt
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | התחלת נגן בינה כשרה
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | === מידע מערכת ===
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | מערכת הפעלה: Windows 11
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | ארכיטקטורה: AMD64
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | מעבד: Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | מידע זיכרון לא זמין (psutil לא מותקן)
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | === בדיקת תלויות ===
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | ✓ PySide6: 6.9.0
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | ✓ numpy: 2.2.6
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | ✓ scipy: 1.15.3
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | ✓ librosa: 0.11.0
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | ✓ soundfile: 0.13.1
+2025-06-01 12:28:18 | INFO     | bina_cshera_main | info:108 | ✓ audioread: 3.0.1
+2025-06-01 12:28:19 | INFO     | bina_cshera_main | info:108 | ✓ numba: 0.61.2
+2025-06-01 12:28:19 | WARNING  | bina_cshera_main | warning:113 | ✗ scikit-learn: לא מותקן
+2025-06-01 12:28:19 | INFO     | bina_cshera_main | info:108 | מתחיל ממשק יחיד ופשוט
+2025-06-01 12:28:19 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת ממשק
+2025-06-01 12:28:19 | INFO     | bina_cshera_main | info:108 | יוצר אפליקציה
+2025-06-01 12:28:21 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת ממשק (זמן: 2.705s)
+2025-06-01 12:28:21 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: הרצת אפליקציה
+2025-06-01 12:29:21 | INFO     | bina_cshera_main | info:108 | סיום פעולה: הרצת אפליקציה (זמן: 59.609s)
+2025-06-01 12:29:21 | INFO     | bina_cshera_main | info:108 | האפליקציה הסתיימה עם קוד: 0
+2025-06-01 12:29:21 | INFO     | bina_cshera_main | info:108 | === סיום תוכנה ===
