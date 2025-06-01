@@ -1,0 +1,6 @@
+module BinaKsheraUI
+singleton Style 1.0 Style.qml
+ModernButton 1.0 components/ModernButton.qml
+ModernSeekBar 1.0 components/ModernSeekBar.qml
+ModernWaveform 1.0 components/ModernWaveform.qml
+MainWindow 1.0 MainWindow.qml
