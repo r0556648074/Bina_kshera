@@ -1,0 +1,40 @@
+modules = ["python-3.11"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["ffmpeg-full", "freefont_ttf", "libxcrypt", "oneDNN", "pkg-config", "re2", "xsimd"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Audio Player"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "test-audio-player"
+
+[[workflows.workflow]]
+name = "Audio Player"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd src && python __main__.py"
+
+[[workflows.workflow]]
+name = "test-audio-player"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd /workspaces/bina-cshera && pip install --no-cache-dir PySide6 numpy scipy librosa pyqtgraph SQLAlchemy faiss-cpu onnxruntime sentence-transformers pytest pytest-qt sentry-sdk pyinstaller && export DISPLAY=:0 && python src/__main__.py"
+
+[deployment]
+run = ["sh", "-c", "cd src && python __main__.py"]
