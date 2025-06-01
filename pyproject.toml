@@ -3,7 +3,15 @@ name = "repl-nix-workspace"
 version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "librosa>=0.11.0",
+    "numpy>=2.2.6",
+    "pyinstaller>=6.13.0",
+    "pyside6>=6.9.0",
+    "pytest>=8.3.5",
+    "pytest-qt>=4.4.0",
+    "scipy>=1.15.3",
+]
 
 [[tool.uv.index]]
 explicit = true
