@@ -13,7 +13,7 @@ from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLabel, 
     QLineEdit, QPushButton, QScrollArea, QFrame, QSizePolicy
 )
-from PySide6.QtCore import Qt, Signal, QTimer, pyqtSignal
+from PySide6.QtCore import Qt, Signal, QTimer
 from PySide6.QtGui import (
     QTextCursor, QTextCharFormat, QColor, QFont, 
     QTextDocument, QTextOption, QPalette
