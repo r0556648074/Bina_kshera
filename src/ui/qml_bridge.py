@@ -31,15 +31,19 @@ class AudioDataModel(QObject):
         self._sample_rate: int = 44100
         self._duration: float = 0.0
     
-    @Property(list, notify=Signal())
+    audioDataChanged = Signal()
+    sampleRateChanged = Signal()
+    durationChanged = Signal()
+    
+    @Property(list, notify=audioDataChanged)
     def audioData(self):
         return self._audio_data or []
     
-    @Property(int, notify=Signal())
+    @Property(int, notify=sampleRateChanged)
     def sampleRate(self):
         return self._sample_rate
     
-    @Property(float, notify=Signal())
+    @Property(float, notify=durationChanged)
     def duration(self):
         return self._duration
     
@@ -296,12 +300,9 @@ class QMLMainApplication:
     def _register_qml_types(self):
         """Register custom QML types."""
         try:
-            # Register the audio controller type
-            qmlRegisterType(QMLAudioController, "BinaKshera", 1, 0, "AudioController")
-            qmlRegisterType(AudioDataModel, "BinaKshera", 1, 0, "AudioDataModel")
-            qmlRegisterType(TranscriptModel, "BinaKshera", 1, 0, "TranscriptModel")
-            
-            logger.info("QML types registered successfully")
+            # Note: In this implementation we'll use context properties instead of registered types
+            # This is more reliable for complex data models
+            logger.info("Using context properties for QML integration")
             
         except Exception as e:
             logger.error(f"Failed to register QML types: {e}")

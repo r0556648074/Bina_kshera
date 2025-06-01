@@ -22,15 +22,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pyinstaller PySide6 numpy scipy librosa
+          pip install pyqtgraph SQLAlchemy faiss-cpu onnxruntime sentence-transformers
+          pip install pytest pytest-qt sentry-sdk
+          pip install numba llvmlite soundfile audioread soxr scikit-learn joblib
 
       - name: Download FFmpeg static binary
         run: |
-          mkdir -p src/resources/ffmpeg
+          if not exist src\resources\ffmpeg mkdir src\resources\ffmpeg
           curl -L "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip" -o ffmpeg.zip
           7z x ffmpeg.zip
-          move ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe src/resources/ffmpeg/
+          move ffmpeg-master-latest-win64-gpl\bin\ffmpeg.exe src\resources\ffmpeg\
           del ffmpeg.zip
           rmdir /s /q ffmpeg-master-latest-win64-gpl
+        shell: cmd
 
       - name: Display spec file content (for debugging)
         run: |
