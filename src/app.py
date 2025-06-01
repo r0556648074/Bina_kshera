@@ -15,8 +15,8 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import QStandardPaths
 from PySide6.QtGui import QIcon
 
-from engine.audio_engine import AudioEngine
-from controllers.playback_controller import PlaybackController
+from engine.simple_audio_player import SimpleAudioEngine
+from controllers.simple_playback_controller import SimplePlaybackController
 from ui.simple_window import SimpleAudioPlayer
 
 logger = logging.getLogger(__name__)
@@ -33,8 +33,8 @@ class BinaKsheraApp:
     
     def __init__(self):
         self.qt_app: Optional[QApplication] = None
-        self.audio_engine: Optional[AudioEngine] = None
-        self.playback_controller: Optional[PlaybackController] = None
+        self.audio_engine: Optional[SimpleAudioEngine] = None
+        self.playback_controller: Optional[SimplePlaybackController] = None
         self.main_window: Optional[SimpleAudioPlayer] = None
         
     def initialize(self) -> bool:
@@ -52,13 +52,13 @@ class BinaKsheraApp:
                 self.qt_app.setWindowIcon(QIcon(str(icon_path)))
             
             # Initialize audio engine
-            self.audio_engine = AudioEngine()
+            self.audio_engine = SimpleAudioEngine()
             if not self.audio_engine.initialize():
                 logger.error("Failed to initialize audio engine")
                 return False
             
             # Initialize playback controller
-            self.playback_controller = PlaybackController(self.audio_engine)
+            self.playback_controller = SimplePlaybackController(self.audio_engine)
             
             # Create main window
             self.main_window = SimpleAudioPlayer(self.playback_controller)

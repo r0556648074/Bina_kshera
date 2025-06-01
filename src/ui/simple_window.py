@@ -17,7 +17,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtGui import QFont, QPixmap, QPalette, QColor
 
-from controllers.playback_controller import PlaybackController, PlaybackState
+from controllers.simple_playback_controller import SimplePlaybackController, PlaybackState
 
 logger = logging.getLogger(__name__)
 
@@ -86,7 +86,7 @@ class ModernSlider(QSlider):
 class SimpleAudioPlayer(QMainWindow):
     """Simple and clean audio player interface."""
     
-    def __init__(self, playback_controller: PlaybackController):
+    def __init__(self, playback_controller: SimplePlaybackController):
         super().__init__()
         self.playback_controller = playback_controller
         self.current_file = None
@@ -111,11 +111,13 @@ class SimpleAudioPlayer(QMainWindow):
         logger.info("Simple audio player window created")
     
     def _setup_styling(self):
-        """Apply modern pastel styling to the window."""
+        """Apply modern pastel styling with RTL support."""
+        self.setLayoutDirection(Qt.LayoutDirection.RightToLeft)  # Hebrew RTL layout
         self.setStyleSheet("""
             QMainWindow {
                 background-color: #FAF7F0;
                 color: #2C3E50;
+                direction: rtl;
             }
             QGroupBox {
                 font-weight: bold;
@@ -125,16 +127,18 @@ class SimpleAudioPlayer(QMainWindow):
                 margin-top: 1ex;
                 padding-top: 10px;
                 background-color: white;
+                direction: rtl;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
-                left: 10px;
+                right: 10px;
                 padding: 0 8px 0 8px;
                 color: #2C3E50;
             }
             QLabel {
                 color: #2C3E50;
                 font-size: 12px;
+                direction: rtl;
             }
             QTextEdit {
                 border: 2px solid #E0D6F5;
@@ -142,6 +146,10 @@ class SimpleAudioPlayer(QMainWindow):
                 background-color: white;
                 padding: 8px;
                 font-size: 12px;
+                direction: rtl;
+            }
+            QHBoxLayout {
+                direction: rtl;
             }
         """)
     
