@@ -1,49 +1,178 @@
-# Bina Cshera (בינה כשרה) - HolyPlayer Pro
+# נגן בינה כשרה (HolyPlayer Pro)
 
-A sophisticated audio player application with synchronized transcript display and waveform visualization, built with Python/PySide6 and packaged as a self-contained Windows executable.
+נגן אודיו מתקדם עם תמלול מסונכרן וויזואליזציה של גלי קול, בעיצוב מודרני ופסטלי.
 
-## Features
+## תכונות עיקריות
 
-- **Advanced Audio Playback**: Support for MP3, WAV, FLAC, and other common audio formats
-- **Waveform Visualization**: Real-time waveform display with synchronized playhead
-- **Transcript Synchronization**: Display and sync text transcripts with audio playback
-- **Modern GUI**: Clean, intuitive interface built with PySide6
-- **Self-Contained**: Single executable file requiring no external installations
+### 🎵 נגן אודיו מתקדם
+- תמיכה בפורמטים: MP3, WAV, FLAC, OGG, M4A
+- ויזואליזציה של גלי קול עם זום וגלילה
+- בקרות ניגון מלאות (נגן, השהה, עצור, דלג)
+- התאמת עוצמת קול
 
-## Architecture
+### 📝 תמלול מסונכרן
+- תמיכה בפורמטי תמלול: JSON, JSONL, SRT, VTT
+- סנכרון אוטומטי עם הניגון
+- חיפוש בתמלול
+- הדגשת הטקסט הנוכחי
 
-The application follows a modular architecture with clear separation of concerns:
+### 🎨 עיצוב מודרני
+- פלטת צבעים פסטלית (#FAF7F0, #CFF0E8, #E0D6F5)
+- פינות מעוגלות ואנימציות חלקות
+- תמיכה מלאה בעברית (RTL)
+- ממשק משתמש אינטואיטיבי
 
-- **Engine Layer**: Core audio processing and file handling
-- **Controllers**: Business logic and coordination between UI and engine
-- **UI Layer**: PySide6-based graphical interface with custom widgets
-- **Utils**: Common utilities and helper functions
+### 🚀 ביצועים מתקדמים
+- עיבוד אודיו באמצעות FFmpeg
+- ויזואליזציה בזמן אמת
+- קובץ EXE עצמאי לחלוטין (ללא תלויות חיצוניות)
 
-## Development Environment
+## דרישות מערכת
 
-This project uses GitHub Codespaces with a custom devcontainer for consistent development:
+- Windows 10/11 (64-bit)
+- 4GB זיכרון RAM מומלץ
+- 100MB שטח אחסון פנוי
 
-- Python 3.12 with PySide6
-- FFmpeg static binaries for audio processing
-- VNC desktop environment for GUI development
-- Automated Windows build pipeline
+## התקנה והרצה
 
-## Getting Started
+### אפשרות 1: הורדת קובץ EXE מוכן
+1. עבור ל[עמוד הרליזים](https://github.com/username/bina-cshera/releases)
+2. הורד את הקובץ `BinaKshera-Windows-EXE.zip`
+3. חלץ את הקובץ למיקום רצוי
+4. הפעל את `bina_cshera.exe`
 
-### Development Setup
+### אפשרות 2: בנייה מקוד המקור
 
-1. Open in GitHub Codespaces
-2. The devcontainer will automatically set up the development environment
-3. Access the VNC desktop at the forwarded port 6080
-4. Run the application: `python src/__main__.py`
+#### דרישות פיתוח
+- Python 3.12
+- Git
 
-### Building Windows Executable
+#### שלבי ההתקנה
+```bash
+# שיבוט הפרויקט
+git clone https://github.com/username/bina-cshera.git
+cd bina-cshera
 
-The project includes GitHub Actions workflow for automated Windows builds:
+# התקנת תלויות
+pip install -r requirements.txt
 
-1. Push to `main` branch or trigger manually
-2. Download the built executable from GitHub Actions artifacts
-3. The executable includes all dependencies and FFmpeg binary
+# הרצת האפליקציה
+python src/__main__.py
 
-## Project Structure
+# הרצה עם ממשק מודרני (QML)
+python src/__main__.py --modern
+```
 
+#### בניית EXE
+```bash
+# בנייה עם PyInstaller
+pyinstaller bina_cshera.spec
+
+# הקובץ המוכן יהיה ב:
+# dist/bina_cshera/bina_cshera.exe
+```
+
+## שימוש
+
+### טעינת קובץ אודיו
+1. לחץ על "פתח קובץ" בסרגל העליון
+2. בחר קובץ אודיו נתמך
+3. הנגן יטען את הקובץ ויציג את הוויזואליזציה
+
+### עבודה עם תמלולים
+הנגן מחפש אוטומטית קובץ תמלול עם שם זהה לקובץ האודיו:
+- `שיר.mp3` → `שיר.json`, `שיר.srt`, `שיר.vtt`
+
+פורמטי תמלול נתמכים:
+- **JSON**: `{"segments": [{"start_time": 0.0, "end_time": 5.0, "text": "טקסט"}]}`
+- **SRT**: פורמט כתוביות סטנדרטי
+- **VTT**: פורמט WebVTT
+
+### בקרות נגן
+- **רווח**: נגן/השהה
+- **Home**: התחלת הקובץ
+- **←/→**: דילוג 10 שניות
+- **Click על הוויזואליזציה**: דילוג למיקום
+
+## מבנה הפרויקט
+
+```
+bina-cshera/
+├── src/
+│   ├── ui/
+│   │   ├── qml/           # ממשק QML מודרני
+│   │   │   ├── components/
+│   │   │   ├── MainWindow.qml
+│   │   │   └── Style.qml
+│   │   ├── main_window.py # ממשק קלאסי
+│   │   └── qml_bridge.py  # גשר Python-QML
+│   ├── engine/
+│   │   ├── audio_engine.py   # מנוע אודיו
+│   │   └── file_handler.py   # טיפול בקבצים
+│   ├── controllers/
+│   │   └── playback_controller.py  # בקרת ניגון
+│   ├── utils/
+│   └── __main__.py        # נקודת כניסה
+├── tests/                 # בדיקות יחידה
+├── .github/workflows/     # GitHub Actions
+├── bina_cshera.spec      # הגדרות PyInstaller
+└── README.md
+```
+
+## פיתוח
+
+### הפעלת בדיקות
+```bash
+pytest tests/
+```
+
+### הוספת תכונות חדשות
+1. צור branch חדש
+2. הוסף את התכונה עם בדיקות
+3. פתח Pull Request
+
+### מצבי ממשק
+- **קלאסי**: `python src/__main__.py` (ברירת מחדל)
+- **מודרני**: `python src/__main__.py --modern`
+
+## תמיכה ופתרון בעיות
+
+### בעיות נפוצות
+
+**הנגן לא מופעל**
+- ודא שאין תוכנות אנטי-וירוס שחוסמות את הקובץ
+- הפעל כמנהל אם נדרש
+
+**אין צליל**
+- בדוק הגדרות מערכת הקול
+- ודא שקובץ האודיו תקין
+
+**תמלול לא מוצג**
+- ודא שקיים קובץ תמלול עם שם זהה
+- בדוק את פורמט קובץ התמלול
+
+### לוגים ואבחון
+הנגן יוצר קובץ לוג: `bina_cshera.log`
+
+## רישיון ופיתוח
+
+פרויקט זה פותח עבור קהילת בינה כשרה.
+
+### מפתחים
+- ארכיטקטורה מודולרית עם הפרדת אחריות
+- תמיכה ב-Plugin Architecture לעתיד
+- קוד מתועד ובדיקות יחידה
+
+### תרומה לפרויקט
+1. Fork הפרויקט
+2. צור branch לתכונה חדשה
+3. Commit השינויים
+4. Push ל-branch
+5. פתח Pull Request
+
+---
+
+**גרסה נוכחית**: 1.0.0  
+**תאריך עדכון אחרון**: יוני 2025
+
+לתמיכה נוספת, פתח [Issue](https://github.com/username/bina-cshera/issues) בגיטהאב.
