@@ -107,7 +107,7 @@ class AudioLoadWorker(QThread):
                 self.transcriptLoaded.emit(bundle.segments)
             
             # Store bundle for cleanup later
-            self.bundle = bundle
+            self.current_bundle = bundle
             
             if detailed_logger:
                 detailed_logger.end_operation("טעינת אודיו ברקע")
@@ -181,6 +181,7 @@ class AdvancedAudioPlayer(QMainWindow):
         self.transcript_widget = None
         self.search_engine = None
         self.audio_worker = None
+        self.current_bundle = None  # For BC1 cleanup
         
         # State
         self.current_file = None
@@ -317,10 +318,14 @@ class AdvancedAudioPlayer(QMainWindow):
         self.open_bc1_button = QPushButton("פתח BC1")
         self.open_bc1_button.clicked.connect(self._open_bc1_file)
         
+        self.demo_bc1_button = QPushButton("BC1 דמו")
+        self.demo_bc1_button.clicked.connect(self._load_demo_bc1)
+        
         header_layout.addWidget(self.file_label)
         header_layout.addStretch()
         header_layout.addWidget(self.open_button)
         header_layout.addWidget(self.open_bc1_button)
+        header_layout.addWidget(self.demo_bc1_button)
         
         layout.addWidget(header_group)
         
@@ -565,6 +570,54 @@ class AdvancedAudioPlayer(QMainWindow):
             if detailed_logger:
                 detailed_logger.exception(f"שגיאה בפתיחת BC1: {e}")
             self._show_error(f"שגיאה בפתיחת קובץ BC1: {e}")
+    
+    def _load_demo_bc1(self):
+        """Load demo BC1 file."""
+        try:
+            if detailed_logger:
+                detailed_logger.start_operation("טעינת BC1 דמו")
+            
+            from formats.bc1_format import create_demo_bc1, open_bc1
+            from io import BytesIO
+            
+            # Create demo BC1 data
+            bc1_bytes = create_demo_bc1()
+            if not bc1_bytes:
+                self._show_error("לא ניתן ליצור קובץ BC1 דמו")
+                return
+            
+            # Load demo BC1
+            bundle = open_bc1(BytesIO(bc1_bytes))
+            
+            # Update UI
+            self.current_file = "demo.bc1"
+            self.file_label.setText("קובץ BC1 דמו - תמלול מסונכרן")
+            self.status_bar.showMessage("טוען BC1 דמו...")
+            
+            # Load in media player
+            media_url = QUrl.fromLocalFile(str(Path(bundle.audio_file).absolute()))
+            self.media_player.setSource(media_url)
+            
+            # Store bundle
+            self.current_bundle = bundle
+            
+            # Set transcript and visualization
+            if bundle.segments:
+                self.current_segments = bundle.segments
+                if hasattr(self.transcript_widget, 'set_transcript_segments'):
+                    self.transcript_widget.set_transcript_segments(bundle.segments)
+            
+            self._set_controls_enabled(True)
+            self.status_bar.showMessage("BC1 דמו נטען בהצלחה")
+            
+            if detailed_logger:
+                detailed_logger.end_operation("טעינת BC1 דמו")
+                detailed_logger.info("BC1 דמו נטען בהצלחה")
+                
+        except Exception as e:
+            if detailed_logger:
+                detailed_logger.exception(f"שגיאה בטעינת BC1 דמו: {e}")
+            self._show_error(f"שגיאה בטעינת BC1 דמו: {e}")
     
     def _load_audio_file(self, file_path: str, is_bc1: bool):
         """Load audio file in background."""

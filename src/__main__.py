@@ -31,7 +31,30 @@ def main():
         logger.log_system_info()
         logger.log_dependencies()
         
-        # Always use classic interface - simpler and more reliable
+        # Try advanced player first, fallback to simple
+        logger.info("מנסה לטעון נגן מתקדם עם כל התכונות")
+        
+        try:
+            from advanced_audio_app import create_advanced_audio_app
+            logger.start_operation("טעינת נגן מתקדם")
+            
+            app, window = create_advanced_audio_app()
+            if app and window:
+                logger.end_operation("טעינת נגן מתקדם")
+                logger.start_operation("הרצת נגן מתקדם")
+                logger.info("נגן מתקדם מוכן ופועל")
+                
+                exit_code = app.exec()
+                logger.end_operation("הרצת נגן מתקדם")
+                logger.info(f"הנגן המתקדם הסתיים עם קוד: {exit_code}")
+                return exit_code
+                
+        except ImportError as e:
+            logger.warning(f"נגן מתקדם לא זמין, עובר לנגן פשוט: {e}")
+        except Exception as e:
+            logger.warning(f"שגיאה בנגן מתקדם, עובר לנגן פשוט: {e}")
+        
+        # Fallback to simple interface
         logger.info("מתחיל ממשק יחיד ופשוט")
         logger.start_operation("טעינת ממשק")
         

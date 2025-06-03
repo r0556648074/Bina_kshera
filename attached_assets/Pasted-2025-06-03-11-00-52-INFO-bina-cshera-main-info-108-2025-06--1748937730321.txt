@@ -1,0 +1,53 @@
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | === נגן בינה כשרה התחיל ===
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | זמן התחלה: 2025-06-03 11:00:52
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | גרסת Python: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | מערכת הפעלה: nt
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | התחלת נגן בינה כשרה
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | === מידע מערכת ===
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | מערכת הפעלה: Windows 11
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | ארכיטקטורה: AMD64
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | מעבד: Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | מידע זיכרון לא זמין (psutil לא מותקן)
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | === בדיקת תלויות ===
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | ✓ PySide6: 6.9.0
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | ✓ numpy: 2.2.6
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | ✓ scipy: 1.15.3
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | ✓ librosa: 0.11.0
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | ✓ soundfile: 0.13.1
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | ✓ audioread: 3.0.1
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | ✓ numba: 0.61.2
+2025-06-03 11:00:52 | WARNING  | bina_cshera_main | warning:113 | ✗ scikit-learn: לא מותקן
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | מתחיל ממשק יחיד ופשוט
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת ממשק
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | יוצר נגן אודיו פשוט ועובד
+2025-06-03 11:00:52 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: יצירת אפליקציה פשוטה
+2025-06-03 11:00:53 | INFO     | bina_cshera_main | info:108 | מחבר אותות נגן מדיה
+2025-06-03 11:00:53 | INFO     | bina_cshera_main | info:108 | אותות נגן מדיה חוברו
+2025-06-03 11:00:53 | INFO     | bina_cshera_main | info:108 | נגן אודיו פשוט נוצר ומוכן לעבודה
+2025-06-03 11:00:54 | INFO     | bina_cshera_main | info:108 | סיום פעולה: יצירת אפליקציה פשוטה (זמן: 2.183s)
+2025-06-03 11:00:54 | INFO     | bina_cshera_main | info:108 | אפליקציה פשוטה נוצרה ומוצגת
+2025-06-03 11:00:54 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת ממשק (זמן: 2.310s)
+2025-06-03 11:00:54 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: הרצת נגן פשוט
+2025-06-03 11:00:54 | INFO     | bina_cshera_main | info:108 | נגן אודיו פשוט מוכן ופועל
+2025-06-03 11:01:10 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: בחירת קובץ אודיו
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | פעולת קובץ: נבחר קובץ | C:/Users/oved/Downloads/מצא טוב שיף 4.mp3 | סטטוס: הצליח (גודל: 2,650,752 bytes)
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | סיום פעולה: בחירת קובץ אודיו (זמן: 5.990s)
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת קובץ אודיו
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | טוען קובץ: מצא טוב שיף 4.mp3
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | URL מדיה: file:///C:/Users/oved/Downloads/מצא טוב שיף 4.mp3
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: טוען מדיה | status_code: MediaStatus.LoadingMedia
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת קובץ אודיו (זמן: 0.003s)
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | קובץ נטען בהצלחה: מצא טוב שיף 4.mp3
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: זוהה משך | duration_ms: 110448 | duration_seconds: 110.448 | duration_formatted: 01:50
+2025-06-03 11:01:16 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: מדיה נטענה | status_code: MediaStatus.LoadedMedia
+2025-06-03 11:01:22 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: לחיצת נגן | current_state: PlaybackState.StoppedState | file: מצא טוב שיף 4.mp3
+2025-06-03 11:01:22 | INFO     | bina_cshera_main | info:108 | מתחיל ניגון
+2025-06-03 11:01:22 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב ניגון | state: מנגן | state_code: PlaybackState.PlayingState
+2025-06-03 11:01:22 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: מאגר מדיה | status_code: MediaStatus.BufferingMedia
+2025-06-03 11:01:22 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב מדיה | status: מדיה מאוגרת | status_code: MediaStatus.BufferedMedia
+2025-06-03 11:01:30 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: לחיצת נגן | current_state: PlaybackState.PlayingState | file: מצא טוב שיף 4.mp3
+2025-06-03 11:01:30 | INFO     | bina_cshera_main | info:108 | משהה ניגון
+2025-06-03 11:01:30 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: שינוי מצב ניגון | state: מושהה | state_code: PlaybackState.PausedState
+2025-06-03 11:01:31 | INFO     | bina_cshera_main | info:108 | סיום פעולה: הרצת נגן פשוט (זמן: 37.048s)
+2025-06-03 11:01:31 | INFO     | bina_cshera_main | info:108 | הנגן הפשוט הסתיים עם קוד: 0
+2025-06-03 11:01:31 | INFO     | bina_cshera_main | info:108 | === סיום תוכנה ===
