@@ -340,16 +340,21 @@ class AdvancedAudioPlayer(QMainWindow):
         viz_group = QGroupBox("ויזואליזציה מתקדמת")
         viz_layout = QVBoxLayout(viz_group)
         
-        try:
-            self.waveform_widget = AdvancedWaveformWidget()
-            self.waveform_widget.seekRequested.connect(self._seek_to_position)
-            viz_layout.addWidget(self.waveform_widget)
-        except:
-            # Fallback if advanced waveform not available
-            self.waveform_widget = QLabel("ויזואליזציה מתקדמת - בפיתוח")
-            self.waveform_widget.setMinimumHeight(200)
-            self.waveform_widget.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            viz_layout.addWidget(self.waveform_widget)
+        # Use simple waveform placeholder for now
+        self.waveform_widget = QLabel("ויזואליזציה מתקדמת - בפיתוח")
+        self.waveform_widget.setMinimumHeight(200)
+        self.waveform_widget.setStyleSheet("""
+            QLabel {
+                background-color: #2C3E50;
+                border: 2px solid #3498DB;
+                border-radius: 8px;
+                color: white;
+                font-size: 14px;
+                text-align: center;
+            }
+        """)
+        self.waveform_widget.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        viz_layout.addWidget(self.waveform_widget)
         
         left_layout.addWidget(viz_group)
         
@@ -436,20 +441,25 @@ class AdvancedAudioPlayer(QMainWindow):
         right_panel = QWidget()
         right_layout = QVBoxLayout(right_panel)
         
-        try:
-            self.transcript_widget = TranscriptWidget()
-            self.transcript_widget.segmentClicked.connect(self._seek_to_position)
-            right_layout.addWidget(self.transcript_widget)
-        except:
-            # Fallback if transcript widget not available
-            transcript_group = QGroupBox("תמלול מסונכרן")
-            transcript_layout = QVBoxLayout(transcript_group)
-            
-            self.transcript_widget = QLabel("תמלול מסונכרן - בפיתוח")
-            self.transcript_widget.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            transcript_layout.addWidget(self.transcript_widget)
-            
-            right_layout.addWidget(transcript_group)
+        # Use simple transcript display for now
+        transcript_group = QGroupBox("תמלול מסונכרן")
+        transcript_layout = QVBoxLayout(transcript_group)
+        
+        self.transcript_widget = QLabel("תמלול מסונכרן - בפיתוח")
+        self.transcript_widget.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.transcript_widget.setStyleSheet("""
+            QLabel {
+                background-color: #34495E;
+                border: 2px solid #3498DB;
+                border-radius: 8px;
+                color: white;
+                font-size: 14px;
+                padding: 20px;
+                min-height: 300px;
+            }
+        """)
+        transcript_layout.addWidget(self.transcript_widget)
+        right_layout.addWidget(transcript_group)
         
         # Set splitter proportions
         main_splitter.addWidget(left_panel)
@@ -666,9 +676,9 @@ class AdvancedAudioPlayer(QMainWindow):
             
             self.current_audio_data = audio_data
             
-            # Update waveform
-            if hasattr(self.waveform_widget, 'set_audio_data'):
-                self.waveform_widget.set_audio_data(audio_data, sample_rate)
+            # Update waveform display
+            duration_seconds = len(audio_data) / sample_rate
+            self.waveform_widget.setText(f"ויזואליזציה מתקדמת\nאודיו נטען: {duration_seconds:.1f}s\n{len(audio_data):,} דגימות @ {sample_rate:,}Hz")
             
             # CRITICAL FIX: Load the BC1 temporary file into media player
             if self.current_file and Path(self.current_file).exists():
@@ -690,9 +700,13 @@ class AdvancedAudioPlayer(QMainWindow):
             
             self.current_segments = segments
             
-            # Update transcript widget
-            if hasattr(self.transcript_widget, 'set_transcript_segments'):
-                self.transcript_widget.set_transcript_segments(segments)
+            # Update transcript display
+            transcript_text = f"תמלול נטען: {len(segments)} קטעים\n\n"
+            for i, segment in enumerate(segments[:5]):  # Show first 5 segments
+                transcript_text += f"{i+1}. [{segment['start_time']:.1f}-{segment['end_time']:.1f}s] {segment['text']}\n\n"
+            if len(segments) > 5:
+                transcript_text += f"... ועוד {len(segments) - 5} קטעים"
+            self.transcript_widget.setText(transcript_text)
             
             # Initialize search engine
             if self.search_engine:
@@ -831,13 +845,15 @@ class AdvancedAudioPlayer(QMainWindow):
             position_seconds = position_ms / 1000.0
             self.current_time_label.setText(self._format_time(position_seconds))
             
-            # Update waveform position
-            if hasattr(self.waveform_widget, 'set_position'):
-                self.waveform_widget.set_position(position_seconds)
+            # Update visualization displays
+            if hasattr(self, 'waveform_widget'):
+                self.waveform_widget.setText(f"ויזואליזציה מתקדמת\nמיקום: {position_seconds:.1f}s")
             
-            # Update transcript highlighting
-            if hasattr(self.transcript_widget, 'highlight_current_segment'):
-                self.transcript_widget.highlight_current_segment(position_seconds)
+            # Update transcript display
+            if hasattr(self, 'current_segments') and self.current_segments:
+                current_segment = self._find_current_segment(position_seconds)
+                if current_segment:
+                    self.transcript_widget.setText(f"תמלול נוכחי:\n{current_segment['text']}")
     
     def _on_duration_changed(self, duration_ms: int):
         """Handle duration change."""
@@ -906,6 +922,16 @@ class AdvancedAudioPlayer(QMainWindow):
         minutes = int(seconds // 60)
         secs = int(seconds % 60)
         return f"{minutes:02d}:{secs:02d}"
+    
+    def _find_current_segment(self, position_seconds):
+        """Find the current transcript segment at given position."""
+        if not hasattr(self, 'current_segments') or not self.current_segments:
+            return None
+            
+        for segment in self.current_segments:
+            if segment['start_time'] <= position_seconds <= segment['end_time']:
+                return segment
+        return None
     
     def closeEvent(self, event):
         """Handle window close."""

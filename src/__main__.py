@@ -35,24 +35,24 @@ def main():
         logger.info("מנסה לטעון נגן מתקדם עם כל התכונות")
         
         try:
-            from ultra_modern_player import create_revolutionary_audio_app
-            logger.start_operation("טעינת נגן מהפכני")
+            from simple_audio_app import create_simple_audio_app
+            logger.start_operation("טעינת נגן פשוט")
             
-            app, window = create_revolutionary_audio_app()
+            app, window = create_simple_audio_app()
             if app and window:
-                logger.end_operation("טעינת נגן מהפכני")
-                logger.start_operation("הרצת נגן מהפכני")
-                logger.info("נגן מהפכני מוכן ופועל")
+                logger.end_operation("טעינת נגן פשוט")
+                logger.start_operation("הרצת נגן פשוט")
+                logger.info("נגן פשוט מוכן ופועל")
                 
                 exit_code = app.exec()
-                logger.end_operation("הרצת נגן מהפכני")
-                logger.info(f"הנגן המהפכני הסתיים עם קוד: {exit_code}")
+                logger.end_operation("הרצת נגן פשוט")
+                logger.info(f"הנגן הפשוט הסתיים עם קוד: {exit_code}")
                 return exit_code
                 
         except Exception as e:
-            logger.warning(f"נגן מהפכני לא זמין, עובר למתקדם: {e}")
+            logger.warning(f"שגיאה בנגן פשוט: {e}")
             
-        # Fallback to advanced player
+        # Try advanced player as fallback
         try:
             from advanced_audio_app import create_advanced_audio_app
             logger.start_operation("טעינת נגן מתקדם")
@@ -69,7 +69,7 @@ def main():
                 return exit_code
                 
         except Exception as e:
-            logger.warning(f"שגיאה בנגן מתקדם, עובר לנגן פשוט: {e}")
+            logger.warning(f"שגיאה בנגן מתקדם: {e}")
         
         # Fallback to simple interface
         logger.info("מתחיל ממשק יחיד ופשוט")
