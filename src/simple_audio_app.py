@@ -249,9 +249,9 @@ class WorkingAudioPlayer(QMainWindow):
             
             file_path, _ = QFileDialog.getOpenFileName(
                 self,
-                "בחר קובץ אודיו",
+                "בחר קובץ אודיו או BC1",
                 "",
-                "Audio Files (*.mp3 *.wav *.flac *.ogg *.m4a *.aac *.wma);;All Files (*)"
+                "All Supported (*.mp3 *.wav *.flac *.ogg *.m4a *.aac *.wma *.bc1);;Audio Files (*.mp3 *.wav *.flac *.ogg *.m4a *.aac *.wma);;BC1 Files (*.bc1);;All Files (*)"
             )
             
             if file_path:
@@ -259,7 +259,11 @@ class WorkingAudioPlayer(QMainWindow):
                     detailed_logger.log_file_operation("נבחר קובץ", file_path, True)
                     detailed_logger.end_operation("בחירת קובץ אודיו")
                 
-                self._load_file(file_path)
+                # Check if BC1 file
+                if file_path.lower().endswith('.bc1'):
+                    self._load_bc1_file(file_path)
+                else:
+                    self._load_file(file_path)
             else:
                 if detailed_logger:
                     detailed_logger.end_operation("בחירת קובץ אודיו")
@@ -269,6 +273,90 @@ class WorkingAudioPlayer(QMainWindow):
             if detailed_logger:
                 detailed_logger.exception(f"שגיאה בבחירת קובץ: {e}")
             self.status_label.setText(f"שגיאה: {e}")
+    
+    def _load_bc1_file(self, file_path: str):
+        """Load BC1 file and extract audio for playback."""
+        try:
+            if detailed_logger:
+                detailed_logger.start_operation("טעינת קובץ BC1")
+                detailed_logger.info(f"טוען BC1: {Path(file_path).name}")
+            
+            self.status_label.setText("טוען קובץ BC1...")
+            
+            # Load BC1 format
+            from formats.bc1_format import open_bc1
+            with open(file_path, 'rb') as f:
+                bc1_data = f.read()
+            
+            from io import BytesIO
+            bundle = open_bc1(BytesIO(bc1_data))
+            
+            if detailed_logger:
+                detailed_logger.info(f"BC1 נטען: {len(bundle.segments)} קטעי תמלול")
+            
+            # Load the extracted audio file into media player
+            if bundle.audio_file and Path(bundle.audio_file).exists():
+                self.current_file = bundle.audio_file  # Use temp audio file
+                self.media_player.setSource(QUrl.fromLocalFile(bundle.audio_file))
+                
+                # Update UI with BC1 info
+                file_info = f"BC1: {Path(file_path).name}"
+                if bundle.segments:
+                    file_info += f" ({len(bundle.segments)} קטעים)"
+                self.file_label.setText(file_info)
+                self.status_label.setText("קובץ BC1 נטען בהצלחה")
+                
+                # Display transcript info
+                if bundle.segments:
+                    transcript_text = f"תמלול ({len(bundle.segments)} קטעים):\n"
+                    for i, segment in enumerate(bundle.segments[:3]):  # Show first 3
+                        transcript_text += f"{i+1}. [{segment['start_time']:.1f}-{segment['end_time']:.1f}s] {segment['text'][:50]}...\n"
+                    if len(bundle.segments) > 3:
+                        transcript_text += f"... ועוד {len(bundle.segments) - 3} קטעים"
+                    self.status_label.setText(transcript_text)
+                
+                if detailed_logger:
+                    detailed_logger.end_operation("טעינת קובץ BC1")
+                    detailed_logger.info("BC1 מוכן לניגון")
+                    
+            else:
+                raise Exception("לא ניתן לחלץ אודיו מקובץ BC1")
+                
+        except Exception as e:
+            if detailed_logger:
+                detailed_logger.exception(f"שגיאה בטעינת BC1: {e}")
+            self.status_label.setText(f"שגיאה בטעינת BC1: {e}")
+            QMessageBox.critical(self, "שגיאה", f"שגיאה בטעינת קובץ BC1:\n{e}")
+    
+    def _load_demo_bc1(self):
+        """Load demo BC1 file."""
+        try:
+            if detailed_logger:
+                detailed_logger.start_operation("טעינת דמו BC1")
+            
+            self.status_label.setText("יוצר דמו BC1...")
+            
+            # Create demo BC1
+            from formats.bc1_format import create_demo_bc1
+            bc1_data = create_demo_bc1()
+            
+            # Save to temporary file
+            import tempfile
+            with tempfile.NamedTemporaryFile(suffix='.bc1', delete=False) as temp_file:
+                temp_file.write(bc1_data)
+                temp_path = temp_file.name
+            
+            # Load the demo BC1
+            self._load_bc1_file(temp_path)
+            
+            if detailed_logger:
+                detailed_logger.end_operation("טעינת דמו BC1")
+                
+        except Exception as e:
+            if detailed_logger:
+                detailed_logger.exception(f"שגיאה בטעינת דמו BC1: {e}")
+            self.status_label.setText(f"שגיאה: {e}")
+            QMessageBox.critical(self, "שגיאה", f"שגיאה בטעינת דמו BC1:\n{e}")
     
     def _load_file(self, file_path: str):
         """Load audio file."""
