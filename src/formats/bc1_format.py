@@ -291,19 +291,8 @@ class BC1File:
         
         self.audio_bytes = zip_file.read(audio_file)
         
-        # Handle encryption if needed
-        if self.manifest.encrypted and password:
-            if detailed_logger:
-                detailed_logger.info("מפענח אודיו מוצפן")
-            # For now, assume unencrypted - encryption can be added later
-            # self.audio_bytes = self._decrypt_data(self.audio_bytes, password)
-        
-        # Verify audio checksum if available
-        if self.manifest.checksum_audio:
-            audio_hash = hashlib.sha256(self.audio_bytes).hexdigest()
-            if audio_hash != self.manifest.checksum_audio:
-                if detailed_logger:
-                    detailed_logger.warning("אזהרה: checksum אודיו לא תואם")
+        # Handle encryption if needed (placeholder for future implementation)
+        # For now, assume files are unencrypted
         
         # Load transcript using path from manifest
         if detailed_logger:
@@ -311,12 +300,6 @@ class BC1File:
         
         if transcript_file in zip_file.namelist():
             self.transcript_bytes = zip_file.read(transcript_file)
-            
-            # Handle encryption
-            if hasattr(self, 'manifest') and self.manifest and self.manifest.encrypted and password:
-                if detailed_logger:
-                    detailed_logger.info("מפענח תמלול מוצפן")
-                # self.transcript_bytes = self._decrypt_data(self.transcript_bytes, password)
         else:
             if detailed_logger:
                 detailed_logger.warning(f"קובץ תמלול לא נמצא: {transcript_file}")
@@ -324,15 +307,9 @@ class BC1File:
         # Load metadata using path from manifest
         if metadata_file in zip_file.namelist():
             if detailed_logger:
-                detailed_logger.info("טוען metadata")
+                detailed_logger.info(f"טוען metadata: {metadata_file}")
             
             metadata_data = zip_file.read(metadata_file)
-            
-            # Handle encryption
-            if self.manifest.encrypted and password:
-                # metadata_data = self._decrypt_data(metadata_data, password)
-                pass
-            
             self.metadata = json.loads(metadata_data.decode('utf-8'))
     
     def parse_jsonl_gzip(self) -> List[Dict[str, Any]]:
@@ -382,14 +359,15 @@ class BC1File:
                 detailed_logger.exception(f"שגיאה בפענוח תמלול: {e}")
             return []
     
-    def write_temp_file(self, suffix: str = None) -> str:
+    def write_temp_file(self, suffix: Optional[str] = None) -> str:
         """Write audio bytes to temporary file."""
         if not self.audio_bytes:
             raise ValueError("אין נתוני אודיו")
         
         # Create temporary file
+        audio_ext = getattr(self, 'audio_ext', 'mp3')
         if suffix is None:
-            suffix = f'.{self.audio_ext}' if self.audio_ext else '.mp3'
+            suffix = f'.{audio_ext}'
         
         temp_fd, temp_path = tempfile.mkstemp(suffix=suffix, prefix='bc1_audio_')
         
@@ -464,40 +442,52 @@ def create_demo_bc1() -> bytes:
         if detailed_logger:
             detailed_logger.start_operation("יצירת BC1 דמו")
         
-        # Create demo audio (1 second of silence)
-        import numpy as np
-        sample_rate = 44100
-        duration = 5.0  # 5 seconds
-        samples = int(duration * sample_rate)
-        audio_data = np.zeros(samples, dtype=np.float32)
-        
-        # Convert to MP3-like bytes (simplified)
-        audio_bytes = audio_data.tobytes()
-        
-        # Create demo transcript
+        # Create demo transcript segments
         demo_segments = [
             {
                 "start_time": 0.0,
-                "end_time": 2.0,
-                "text": "שלום, זהו תמלול דמו לבדיקת הנגן",
+                "end_time": 2.5,
+                "text": "שלום וברכה, זהו קובץ דמו לבדיקת נגן בינה כשרה",
                 "speaker_id": "speaker_1",
                 "confidence": 0.95
             },
             {
-                "start_time": 2.0,
-                "end_time": 4.0,
-                "text": "הנגן תומך בפורמט BC1 מתקדם עם תמלול מסונכרן",
+                "start_time": 2.5,
+                "end_time": 5.0,
+                "text": "הנגן תומך בפורמט BC1 מתקדם עם תמלול מסונכרן בזמן אמת",
                 "speaker_id": "speaker_1", 
                 "confidence": 0.92
             },
             {
-                "start_time": 4.0,
-                "end_time": 5.0,
-                "text": "תודה על ההקשבה",
+                "start_time": 5.0,
+                "end_time": 7.0,
+                "text": "ניתן לחפש במלל ולראות ויזואליזציה מתקדמת",
                 "speaker_id": "speaker_2",
                 "confidence": 0.98
+            },
+            {
+                "start_time": 7.0,
+                "end_time": 8.5,
+                "text": "תודה על ההקשבה",
+                "speaker_id": "speaker_2",
+                "confidence": 0.96
             }
         ]
+        
+        duration = 8.5
+        
+        # Create simple MP3-like audio data (sine wave for demo)
+        import numpy as np
+        sample_rate = 44100
+        samples = int(duration * sample_rate)
+        
+        # Generate a simple tone for demo
+        t = np.linspace(0, duration, samples)
+        frequency = 440  # A note
+        audio_data = 0.3 * np.sin(2 * np.pi * frequency * t)
+        
+        # Convert to bytes (simplified - real MP3 would need encoding)
+        audio_bytes = (audio_data * 32767).astype(np.int16).tobytes()
         
         # Create JSONL transcript
         transcript_lines = []
@@ -507,39 +497,37 @@ def create_demo_bc1() -> bytes:
         transcript_text = '\n'.join(transcript_lines)
         transcript_bytes = gzip.compress(transcript_text.encode('utf-8'))
         
-        # Create metadata
+        # Create metadata following the new format
         metadata = {
-            "title": "קובץ דמו לבדיקת נגן בינה כשרה",
-            "duration": duration,
+            "title": "דוגמת דרשה - נגן בינה כשרה",
+            "date_created": "2025-06-03T12:00:00Z",
             "language": "he",
-            "created_at": "2025-06-01",
-            "description": "קובץ BC1 לדוגמה עם תמלול מסונכרן"
+            "speaker_count": 2,
+            "duration_hint_sec": duration
         }
         
-        # Create manifest
-        manifest = BC1Manifest(
-            version="1.0",
-            encrypted=False,
-            audio_format="raw",
-            transcript_format="jsonl",
-            checksum_audio=hashlib.sha256(audio_bytes).hexdigest(),
-            checksum_transcript=hashlib.sha256(transcript_bytes).hexdigest()
-        )
+        # Create manifest following the new format
+        manifest = {
+            "format_version": 1,
+            "audio_file": "audio/audio_content.mp3",
+            "transcript_file": "data/transcript.jsonl.gz",
+            "metadata_file": "data/metadata.json"
+        }
         
-        # Create ZIP archive
+        # Create ZIP archive following the new BC1 format
         zip_buffer = BytesIO()
         with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
             # Add manifest
-            manifest_data = json.dumps(asdict(manifest), ensure_ascii=False, indent=2)
+            manifest_data = json.dumps(manifest, ensure_ascii=False, indent=2)
             zip_file.writestr('manifest.json', manifest_data.encode('utf-8'))
             
-            # Add audio
-            zip_file.writestr('audio/audio.raw', audio_bytes)
+            # Add audio using the path specified in manifest
+            zip_file.writestr('audio/audio_content.mp3', audio_bytes)
             
-            # Add transcript
+            # Add transcript using the path specified in manifest
             zip_file.writestr('data/transcript.jsonl.gz', transcript_bytes)
             
-            # Add metadata
+            # Add metadata using the path specified in manifest
             metadata_data = json.dumps(metadata, ensure_ascii=False, indent=2)
             zip_file.writestr('data/metadata.json', metadata_data.encode('utf-8'))
         

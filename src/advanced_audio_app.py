@@ -198,10 +198,10 @@ class AdvancedAudioPlayer(QMainWindow):
         self._connect_signals()
         self._setup_shortcuts()
         
-        # Position update timer
+        # Position update timer - every 50ms for smooth updates
         self.position_timer = QTimer()
         self.position_timer.timeout.connect(self._update_position)
-        self.position_timer.start(100)
+        self.position_timer.start(50)  # More frequent updates for live tracking
         
         if detailed_logger:
             detailed_logger.info("נגן אודיו מתקדם נוצר בהצלחה")
@@ -858,8 +858,10 @@ class AdvancedAudioPlayer(QMainWindow):
     
     def _update_position(self):
         """Timer callback for position updates."""
-        # Position updates are handled by signals
-        pass
+        if self.media_player.playbackState() == QMediaPlayer.PlaybackState.PlayingState:
+            # Force position update even if signal doesn't fire
+            position_ms = self.media_player.position()
+            self._on_position_changed(position_ms)
     
     def _set_controls_enabled(self, enabled: bool):
         """Enable/disable playback controls."""
