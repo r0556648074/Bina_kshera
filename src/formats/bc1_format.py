@@ -261,24 +261,33 @@ class BC1File:
     def _load_from_zip(self, zip_file: zipfile.ZipFile, password: Optional[str]):
         """Load content from ZIP file."""
         
-        # Load manifest
+        # Load manifest according to new format
         if detailed_logger:
             detailed_logger.info("טוען manifest מקובץ BC1")
         
         manifest_data = zip_file.read('manifest.json')
         manifest_dict = json.loads(manifest_data.decode('utf-8'))
-        self.manifest = BC1Manifest(**manifest_dict)
         
-        # Detect audio format and load audio
-        audio_files = [name for name in zip_file.namelist() if name.startswith('audio/')]
-        if not audio_files:
-            raise ValueError("לא נמצא קובץ אודיו בארכיון BC1")
+        # Handle both old and new manifest formats
+        if 'audio_file' in manifest_dict:
+            # New format with explicit paths
+            audio_file = manifest_dict['audio_file']
+            transcript_file = manifest_dict.get('transcript_file', 'data/transcript.jsonl.gz')
+            metadata_file = manifest_dict.get('metadata_file', 'data/metadata.json')
+        else:
+            # Old format - auto-detect
+            audio_files = [name for name in zip_file.namelist() if name.startswith('audio/')]
+            if not audio_files:
+                raise ValueError("לא נמצא קובץ אודיו בארכיון BC1")
+            audio_file = audio_files[0]
+            transcript_file = 'data/transcript.jsonl.gz'
+            metadata_file = 'data/metadata.json'
         
-        audio_file = audio_files[0]
+        # Load audio file
         self.audio_ext = Path(audio_file).suffix[1:]  # Remove dot
         
         if detailed_logger:
-            detailed_logger.info(f"טוען אודיו בפורמט: {self.audio_ext}")
+            detailed_logger.info(f"טוען אודיו: {audio_file} (פורמט: {self.audio_ext})")
         
         self.audio_bytes = zip_file.read(audio_file)
         
@@ -296,22 +305,23 @@ class BC1File:
                 if detailed_logger:
                     detailed_logger.warning("אזהרה: checksum אודיו לא תואם")
         
-        # Load transcript
+        # Load transcript using path from manifest
         if detailed_logger:
-            detailed_logger.info("טוען תמלול דחוס")
+            detailed_logger.info(f"טוען תמלול: {transcript_file}")
         
-        transcript_file = 'data/transcript.jsonl.gz'
         if transcript_file in zip_file.namelist():
             self.transcript_bytes = zip_file.read(transcript_file)
             
             # Handle encryption
-            if self.manifest.encrypted and password:
+            if hasattr(self, 'manifest') and self.manifest and self.manifest.encrypted and password:
                 if detailed_logger:
                     detailed_logger.info("מפענח תמלול מוצפן")
                 # self.transcript_bytes = self._decrypt_data(self.transcript_bytes, password)
+        else:
+            if detailed_logger:
+                detailed_logger.warning(f"קובץ תמלול לא נמצא: {transcript_file}")
         
-        # Load metadata if exists
-        metadata_file = 'data/metadata.json'
+        # Load metadata using path from manifest
         if metadata_file in zip_file.namelist():
             if detailed_logger:
                 detailed_logger.info("טוען metadata")

@@ -1,0 +1,88 @@
+הקובץ שקיבלת – ‎output_demo.bc1 – הוא למעשה קובץ ‎ZIP תקני שעבר “מיתוג” בסיומת ‎.bc1.
+הוא מאורגן כך שהנגן שלך יכול למצוא הכול בלי ניחושים:
+
+pgsql
+Copy
+Edit
+output_demo.bc1
+│
+├─ manifest.json                   ← המפה המרכזית
+│
+├─ audio/                          ← כל מה שקשור לקול
+│   └─ audio_content.mp3           ← השמע (בדיוק כמו שהעלית)
+│
+└─ data/                           ← שכבת הטקסט והדברים מסביב
+    ├─ transcript.jsonl.gz         ← תמלול מיושר-זמנים, דחוס Gzip
+    └─ metadata.json               ← פרטים כלליים (כותרת, תאריך, שפה…)
+1  manifest.json – “חוברת הוראות”
+json
+Copy
+Edit
+{
+  "format_version": 1,
+  "audio_file": "audio/audio_content.mp3",
+  "transcript_file": "data/transcript.jsonl.gz",
+  "metadata_file": "data/metadata.json"
+}
+format_version – מאפשר לך לתמוך בעתיד בגרסאות נוספות.
+
+כל שדה מגדיר נתיב יחסי בתוך ה-ZIP, כך שהנגן לא צריך לסרוק – הוא קורא מניפסט, קופץ ישירות לקבצים.
+
+2  השמע – ‎audio/audio_content.mp3
+זהו קובץ ה-MP3 המקורי (או המומר) כפי שהועבר.
+
+הנגן יכול להעתיק אותו לקובץ זמני או להזרים ישירות מ-buffer.
+
+3  התמלול – ‎data/transcript.jsonl.gz
+JSON-Lines: כל שורה אובייקט עם start_time, end_time, text, ‎speaker_id.
+
+דחיסת Gzip: חוסכת גודל ועדיין נפתחת בשורת קוד (gzip.decompress).
+
+ברגע שהנגן טען – הוא מקבל רשימת סגמנטים ברורים לשימוש בחיפוש ובהדגשה.
+
+4  metadata.json
+json
+Copy
+Edit
+{
+  "title": "דוגמת דרשה",
+  "date_created": "2025-06-03T12:34:56Z",
+  "language": "yi",
+  "speaker_count": 1,
+  "duration_hint_sec": 120
+}
+נתונים להצגה בכותרת או לחיפוש ספרייתי.
+
+לא חובה – אם אין, פשוט מתעלמים.
+
+5  זרימת חילוץ בנגן
+פתח כ-ZIP.
+
+קרא manifest.json.
+
+אמת שקבצים קיימים; אם תרצה – בדוק צ’קסום.
+
+טען את ‎audio_content.mp3 לבילון השמע.
+
+דה-קומפרס ‎transcript.jsonl.gz, פענח UTF-8, הפוך לרשימת סגמנטים.
+
+טען metadata.json אם צריך כותרת/פרטים.
+
+הפונקציות שלך (ניגון, חיפוש, ויזואליזציה) מקבלות:
+
+audio_path או bytes
+
+segments (list)
+
+metadata (dict)
+
+למה זה מקצועי
+פורמט פתוח (ZIP + JSON) ⇒ קל לתחזק, קל להרחיב.
+
+מניפסט ברור ⇒ אין חיפושים מיותרים.
+
+דחיסה + אפשרות הצפנה בעתיד ⇒ קבצים קטנים, אופציה לאבטחה.
+
+התאמה מושלמת ל-AI ול-UI: שמע, טקסט ומידע נלווים – כל אחד בתיקייה משלו.
+
+כך תדע בדיוק מה לחלץ ומה לשים באיזה מודול, בלי הפתעות.
