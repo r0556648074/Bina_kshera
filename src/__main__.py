@@ -35,6 +35,25 @@ def main():
         logger.info("מנסה לטעון נגן מתקדם עם כל התכונות")
         
         try:
+            from ultra_modern_player import create_revolutionary_audio_app
+            logger.start_operation("טעינת נגן מהפכני")
+            
+            app, window = create_revolutionary_audio_app()
+            if app and window:
+                logger.end_operation("טעינת נגן מהפכני")
+                logger.start_operation("הרצת נגן מהפכני")
+                logger.info("נגן מהפכני מוכן ופועל")
+                
+                exit_code = app.exec()
+                logger.end_operation("הרצת נגן מהפכני")
+                logger.info(f"הנגן המהפכני הסתיים עם קוד: {exit_code}")
+                return exit_code
+                
+        except Exception as e:
+            logger.warning(f"נגן מהפכני לא זמין, עובר למתקדם: {e}")
+            
+        # Fallback to advanced player
+        try:
             from advanced_audio_app import create_advanced_audio_app
             logger.start_operation("טעינת נגן מתקדם")
             
@@ -49,8 +68,6 @@ def main():
                 logger.info(f"הנגן המתקדם הסתיים עם קוד: {exit_code}")
                 return exit_code
                 
-        except ImportError as e:
-            logger.warning(f"נגן מתקדם לא זמין, עובר לנגן פשוט: {e}")
         except Exception as e:
             logger.warning(f"שגיאה בנגן מתקדם, עובר לנגן פשוט: {e}")
         
