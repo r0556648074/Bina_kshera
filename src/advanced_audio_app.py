@@ -670,6 +670,12 @@ class AdvancedAudioPlayer(QMainWindow):
             if hasattr(self.waveform_widget, 'set_audio_data'):
                 self.waveform_widget.set_audio_data(audio_data, sample_rate)
             
+            # CRITICAL FIX: Load the BC1 temporary file into media player
+            if self.current_file and Path(self.current_file).exists():
+                if detailed_logger:
+                    detailed_logger.info(f"טוען קובץ אודיו זמני לנגן: {self.current_file}")
+                self.media_player.setSource(QUrl.fromLocalFile(self.current_file))
+            
             self._set_controls_enabled(True)
             
         except Exception as e:
@@ -720,12 +726,29 @@ class AdvancedAudioPlayer(QMainWindow):
     def _toggle_play(self):
         """Toggle play/pause."""
         try:
+            # Check if file is loaded
+            if not self.current_file:
+                self._show_error("אין קובץ נטען")
+                return
+                
             state = self.media_player.playbackState()
+            media_status = self.media_player.mediaStatus()
             
             if detailed_logger:
                 detailed_logger.log_audio_operation("החלפת נגן/השהה", {
-                    "current_state": state
+                    "current_state": state,
+                    "media_status": media_status,
+                    "file": self.current_file
                 })
+            
+            # If media isn't loaded, try to load it first
+            if media_status not in [QMediaPlayer.MediaStatus.LoadedMedia, QMediaPlayer.MediaStatus.BufferedMedia]:
+                if detailed_logger:
+                    detailed_logger.info("טוען קובץ אודיו לניגון")
+                self.media_player.setSource(QUrl.fromLocalFile(self.current_file))
+                # Give it a moment to load, then try playing
+                QTimer.singleShot(500, lambda: self.media_player.play())
+                return
             
             if state == QMediaPlayer.PlaybackState.PlayingState:
                 self.media_player.pause()
@@ -735,6 +758,7 @@ class AdvancedAudioPlayer(QMainWindow):
         except Exception as e:
             if detailed_logger:
                 detailed_logger.exception(f"שגיאה בניגון: {e}")
+            self._show_error(f"שגיאה בניגון: {e}")
     
     def _pause(self):
         """Pause playback."""

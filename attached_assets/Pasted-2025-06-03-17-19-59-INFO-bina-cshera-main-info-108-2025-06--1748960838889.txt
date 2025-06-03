@@ -1,0 +1,167 @@
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | === נגן בינה כשרה התחיל ===
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | זמן התחלה: 2025-06-03 17:19:59
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | גרסת Python: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | מערכת הפעלה: nt
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | התחלת נגן בינה כשרה
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | === מידע מערכת ===
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | מערכת הפעלה: Windows 11
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | ארכיטקטורה: AMD64
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | מעבד: Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | מידע זיכרון לא זמין (psutil לא מותקן)
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | === בדיקת תלויות ===
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | ✓ PySide6: 6.9.0
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | ✓ numpy: 2.2.6
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | ✓ scipy: 1.15.3
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | ✓ librosa: 0.11.0
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | ✓ soundfile: 0.13.1
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | ✓ audioread: 3.0.1
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | ✓ numba: 0.61.2
+2025-06-03 17:19:59 | WARNING  | bina_cshera_main | warning:113 | ✗ scikit-learn: לא מותקן
+2025-06-03 17:19:59 | INFO     | bina_cshera_main | info:108 | מנסה לטעון נגן מתקדם עם כל התכונות
+2025-06-03 17:20:00 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת נגן מתקדם
+2025-06-03 17:20:00 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: יצירת אפליקציה מתקדמת
+2025-06-03 17:20:01 | INFO     | bina_cshera_main | info:108 | יצירת ווידג'ט ויזואליזציה מתקדם
+2025-06-03 17:20:01 | INFO     | bina_cshera_main | info:108 | יצירת תצוגת תמלול מתקדמת
+2025-06-03 17:20:01 | INFO     | bina_cshera_main | info:108 | יצירת ווידג'ט תמלול מלא
+2025-06-03 17:20:02 | INFO     | bina_cshera_main | info:108 | נגן אודיו מתקדם נוצר בהצלחה
+2025-06-03 17:20:02 | INFO     | bina_cshera_main | info:108 | סיום פעולה: יצירת אפליקציה מתקדמת (זמן: 1.865s)
+2025-06-03 17:20:02 | INFO     | bina_cshera_main | info:108 | אפליקציה מתקדמת נוצרה ומוצגת
+2025-06-03 17:20:02 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת נגן מתקדם (זמן: 1.865s)
+2025-06-03 17:20:02 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: הרצת נגן מתקדם
+2025-06-03 17:20:02 | INFO     | bina_cshera_main | info:108 | נגן מתקדם מוכן ופועל
+2025-06-03 17:20:13 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: פתיחת קובץ BC1
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | פעולת קובץ: טעינת קובץ | C:/Users/oved/Downloads/output_demo.bc1 | סטטוס: הצליח (גודל: 2,652,369 bytes) | bc1_format=True
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | סיום פעולה: פתיחת קובץ BC1 (זמן: 4.833s)
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת אודיו ברקע
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: פתיחת קובץ BC1 לנגן
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת קובץ BC1 מתקדם
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | פעולת קובץ: קריאת BC1 | C:/Users/oved/Downloads/output_demo.bc1 | סטטוס: הצליח (גודל: 2,652,369 bytes)
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | טוען manifest מקובץ BC1
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | טוען אודיו: audio/audio_content.mp3 (פורמט: mp3)
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | טוען תמלול: data/transcript.jsonl.gz
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | טוען metadata: data/metadata.json
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת קובץ BC1 מתקדם (זמן: 0.007s)
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | קובץ BC1 נטען בהצלחה מהענן
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | פעולת קובץ: נוצר קובץ אודיו זמני | C:\Users\oved\AppData\Local\Temp\bc1_audio_ey3e2uoa.mp3 | סטטוס: הצליח (גודל: 2,650,752 bytes)
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | גודל קובץ אודיו: 2650752 bytes
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: פענוח תמלול JSONL
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | סיום פעולה: פענוח תמלול JSONL (זמן: 0.000s)
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | נפענחו 16 קטעי תמלול
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | סיום פעולה: פתיחת קובץ BC1 לנגן (זמן: 0.007s)
+2025-06-03 17:20:17 | INFO     | bina_cshera_main | info:108 | BC1 מוכן לניגון: 16 קטעים, אודיו: mp3
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: אודיו BC1 נטען | file: C:\Users\oved\AppData\Local\Temp\bc1_audio_ey3e2uoa.mp3 | sample_rate: 48000 | duration: 110.448 | samples: 5301504 | segments_count: 16
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת אודיו ברקע (זמן: 14.326s)
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | נתוני אודיו נטענו בהצלחה
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: הגדרת נתוני אודיו לויזואליזציה
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | קובץ BC1 נטען בהצלחה: 16 קטעים
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | נתוני גלים הוכנו: 2001 דגימות
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | סיום פעולה: הגדרת נתוני אודיו לויזואליזציה (זמן: 0.010s)
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: נתוני אודיו הוגדרו | sample_rate: 48000 | duration: 110.448 | samples: 5301504
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | תמלול נטען עם 16 קטעים
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: הגדרת קטעי תמלול
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | מגדיר 16 קטעי תמלול
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: חישוב ספקטרוגרמה
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | תצוגת תמלול נבנתה מחדש עם 16 קטעים
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | סיום פעולה: הגדרת קטעי תמלול (זמן: 0.020s)
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | יצירת מנוע חיפוש תמלול
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: אתחול מסד נתונים לחיפוש
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | סיום פעולה: אתחול מסד נתונים לחיפוש (זמן: 0.012s)
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | מסד נתונים לחיפוש אותחל בהצלחה
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: אינדוקס תמלול לחיפוש
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | מאנדקס 16 קטעי תמלול
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | סיום פעולה: אינדוקס תמלול לחיפוש (זמן: 0.000s)
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | אינדוקס הושלם עבור 16 קטעים
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | מנוע חיפוש אותחל עם התמלול
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | סיום פעולה: חישוב ספקטרוגרמה (זמן: 0.228s)
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: ספקטרוגרמה מוכנה | freq_bins: 426 | time_bins: 5176 | max_freq: 9960.938 | duration: 110.421
+2025-06-03 17:20:32 | INFO     | bina_cshera_main | info:108 | ספקטרוגרמה מוכנה להצגה
+2025-06-03 17:21:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:08 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:08 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:08 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:09 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:09 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:09 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:09 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:11 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:21:17 | DEBUG    | bina_cshera_main | debug:103 | פעולת ממשק: הגדרת גלילה אוטומטית | רכיב: auto_scroll | enabled=False
+2025-06-03 17:21:18 | DEBUG    | bina_cshera_main | debug:103 | פעולת ממשק: הגדרת גלילה אוטומטית | רכיב: auto_scroll | enabled=True
+2025-06-03 17:23:59 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:02 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:02 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:02 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:02 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:02 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:02 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:03 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: חיפוש בתמלול
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: חיפוש טקסט | query: ג
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | תצוגת תמלול נבנתה מחדש עם 16 קטעים
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | ניקוי הדגשות חיפוש
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | סיום פעולה: חיפוש בתמלול (זמן: 0.035s)
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | נמצאו 18 תוצאות עבור: ג
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: חיפוש בתמלול
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: חיפוש טקסט | query: גא
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | תצוגת תמלול נבנתה מחדש עם 16 קטעים
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | ניקוי הדגשות חיפוש
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | סיום פעולה: חיפוש בתמלול (זמן: 0.030s)
+2025-06-03 17:24:10 | INFO     | bina_cshera_main | info:108 | נמצאו 2 תוצאות עבור: גא
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: חיפוש בתמלול
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: חיפוש טקסט | query: ג
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | תצוגת תמלול נבנתה מחדש עם 16 קטעים
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | ניקוי הדגשות חיפוש
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | סיום פעולה: חיפוש בתמלול (זמן: 0.036s)
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | נמצאו 18 תוצאות עבור: ג
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: חיפוש בתמלול
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: חיפוש טקסט | query: גע
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | תצוגת תמלול נבנתה מחדש עם 16 קטעים
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | ניקוי הדגשות חיפוש
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | סיום פעולה: חיפוש בתמלול (זמן: 0.015s)
+2025-06-03 17:24:13 | INFO     | bina_cshera_main | info:108 | נמצאו 13 תוצאות עבור: גע
+2025-06-03 17:24:15 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: חיפוש בתמלול
+2025-06-03 17:24:15 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: חיפוש טקסט | query: ג
+2025-06-03 17:24:15 | INFO     | bina_cshera_main | info:108 | תצוגת תמלול נבנתה מחדש עם 16 קטעים
+2025-06-03 17:24:15 | INFO     | bina_cshera_main | info:108 | ניקוי הדגשות חיפוש
+2025-06-03 17:24:15 | INFO     | bina_cshera_main | info:108 | סיום פעולה: חיפוש בתמלול (זמן: 0.036s)
+2025-06-03 17:24:15 | INFO     | bina_cshera_main | info:108 | נמצאו 18 תוצאות עבור: ג
+2025-06-03 17:24:16 | INFO     | bina_cshera_main | info:108 | תצוגת תמלול נבנתה מחדש עם 16 קטעים
+2025-06-03 17:24:16 | INFO     | bina_cshera_main | info:108 | ניקוי הדגשות חיפוש
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת BC1 דמו
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: יצירת BC1 דמו
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | סיום פעולה: יצירת BC1 דמו (זמן: 0.040s)
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | נוצר BC1 דמו: 672949 bytes
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: פתיחת קובץ BC1 לנגן
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: טעינת קובץ BC1 מתקדם
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | טוען manifest מקובץ BC1
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | טוען אודיו: audio/audio_content.mp3 (פורמט: mp3)
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | טוען תמלול: data/transcript.jsonl.gz
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | טוען metadata: data/metadata.json
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת קובץ BC1 מתקדם (זמן: 0.010s)
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | קובץ BC1 נטען בהצלחה מהענן
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | פעולת קובץ: נוצר קובץ אודיו זמני | C:\Users\oved\AppData\Local\Temp\bc1_audio_zm3dj83z.mp3 | סטטוס: הצליח (גודל: 749,700 bytes)
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | גודל קובץ אודיו: 749700 bytes
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: פענוח תמלול JSONL
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | סיום פעולה: פענוח תמלול JSONL (זמן: 0.000s)
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | נפענחו 4 קטעי תמלול
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | סיום פעולה: פתיחת קובץ BC1 לנגן (זמן: 0.010s)
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | BC1 מוכן לניגון: 4 קטעים, אודיו: mp3
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: הגדרת קטעי תמלול
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | מגדיר 4 קטעי תמלול
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | תצוגת תמלול נבנתה מחדש עם 4 קטעים
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | סיום פעולה: הגדרת קטעי תמלול (זמן: 0.002s)
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | סיום פעולה: טעינת BC1 דמו (זמן: 0.073s)
+2025-06-03 17:24:20 | INFO     | bina_cshera_main | info:108 | BC1 דמו נטען בהצלחה
+2025-06-03 17:24:21 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: זוהה משך | duration_ms: 0 | duration_seconds: 0.000
+2025-06-03 17:24:25 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: החלפת נגן/השהה | current_state: PlaybackState.StoppedState
+2025-06-03 17:24:25 | INFO     | bina_cshera_main | info:108 | פעולת אודיו: הדגשת קטע נוכחי | current_time: 0.000 | segment_index: 0 | auto_scroll: True
+2025-06-03 17:24:38 | INFO     | bina_cshera_main | info:108 | התחלת פעולה: פתיחת קובץ BC1
+2025-06-03 17:24:40 | INFO     | bina_cshera_main | info:108 | סיום פעולה: פתיחת קובץ BC1 (זמן: 2.600s)
+2025-06-03 17:24:41 | INFO     | bina_cshera_main | info:108 | ניקוי מנוע חיפוש הושלם
+2025-06-03 17:24:41 | INFO     | bina_cshera_main | info:108 | נגן מתקדם נסגר
+2025-06-03 17:24:41 | INFO     | bina_cshera_main | info:108 | סיום פעולה: הרצת נגן מתקדם (זמן: 279.302s)
+2025-06-03 17:24:41 | INFO     | bina_cshera_main | info:108 | הנגן המתקדם הסתיים עם קוד: 0
+2025-06-03 17:24:41 | INFO     | bina_cshera_main | info:108 | === סיום תוכנה ===
