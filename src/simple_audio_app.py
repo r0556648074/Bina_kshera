@@ -49,10 +49,10 @@ class WorkingAudioPlayer(QMainWindow):
         self._setup_ui()
         self._connect_signals()
         
-        # Position update timer
+        # Position update timer - faster for smooth tracking
         self.position_timer = QTimer()
         self.position_timer.timeout.connect(self._update_position)
-        self.position_timer.start(100)
+        self.position_timer.start(50)  # 20 FPS for smooth position tracking
         
         if detailed_logger:
             detailed_logger.info("נגן אודיו פשוט נוצר ומוכן לעבודה")
@@ -477,8 +477,10 @@ class WorkingAudioPlayer(QMainWindow):
     
     def _update_position(self):
         """Timer callback for position updates."""
-        # Position updates handled by signals
-        pass
+        if self.media_player.playbackState() == QMediaPlayer.PlaybackState.PlayingState:
+            # Force position update for real-time tracking
+            position_ms = self.media_player.position()
+            self._on_position_changed(position_ms)
     
     def _format_time(self, seconds: float) -> str:
         """Format time as MM:SS."""
