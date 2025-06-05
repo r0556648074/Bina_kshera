@@ -12,7 +12,7 @@ from typing import Optional
 
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
-    QPushButton, QLabel, QSlider, QFileDialog, QGroupBox, QTextEdit
+    QPushButton, QLabel, QSlider, QFileDialog, QGroupBox, QTextEdit, QMessageBox
 )
 from PySide6.QtCore import Qt, QTimer, QUrl
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
@@ -40,6 +40,7 @@ class WorkingAudioPlayer(QMainWindow):
         # State tracking
         self.current_file = None
         self.is_seeking = False
+        self.current_bc1_bundle = None  # Track BC1 bundle for cleanup
         
         # UI setup
         self.setWindowTitle("נגן בינה כשרה - נגן פשוט ועובד")
