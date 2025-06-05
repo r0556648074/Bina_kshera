@@ -275,15 +275,24 @@ class WorkingAudioPlayer(QMainWindow):
             self.status_label.setText(f"שגיאה: {e}")
     
     def _load_bc1_file(self, file_path: str):
-        """Load BC1 file and extract audio for playback."""
+        """Enhanced BC1 loading with integrity validation and proper temp file management."""
         try:
             if detailed_logger:
                 detailed_logger.start_operation("טעינת קובץ BC1")
                 detailed_logger.info(f"טוען BC1: {Path(file_path).name}")
             
+            self.status_label.setText("בודק תקינות BC1...")
+            
+            # Validate BC1 file integrity first
+            from system.integrity_checker import validate_media_file
+            validation = validate_media_file(file_path, "bc1")
+            
+            if not validation["valid"]:
+                raise Exception(f"קובץ BC1 לא תקין: {validation['error']}")
+            
             self.status_label.setText("טוען קובץ BC1...")
             
-            # Load BC1 format
+            # Load BC1 format with enhanced error handling
             from formats.bc1_format import open_bc1
             with open(file_path, 'rb') as f:
                 bc1_data = f.read()
@@ -294,39 +303,75 @@ class WorkingAudioPlayer(QMainWindow):
             if detailed_logger:
                 detailed_logger.info(f"BC1 נטען: {len(bundle.segments)} קטעי תמלול")
             
-            # Load the extracted audio file into media player
-            if bundle.audio_file and Path(bundle.audio_file).exists():
-                self.current_file = bundle.audio_file  # Use temp audio file
-                self.media_player.setSource(QUrl.fromLocalFile(bundle.audio_file))
-                
-                # Update UI with BC1 info
-                file_info = f"BC1: {Path(file_path).name}"
-                if bundle.segments:
-                    file_info += f" ({len(bundle.segments)} קטעים)"
-                self.file_label.setText(file_info)
-                self.status_label.setText("קובץ BC1 נטען בהצלחה")
-                
-                # Display transcript info
-                if bundle.segments:
-                    transcript_text = f"תמלול ({len(bundle.segments)} קטעים):\n"
-                    for i, segment in enumerate(bundle.segments[:3]):  # Show first 3
-                        transcript_text += f"{i+1}. [{segment['start_time']:.1f}-{segment['end_time']:.1f}s] {segment['text'][:50]}...\n"
-                    if len(bundle.segments) > 3:
-                        transcript_text += f"... ועוד {len(bundle.segments) - 3} קטעים"
-                    self.status_label.setText(transcript_text)
-                
-                if detailed_logger:
-                    detailed_logger.end_operation("טעינת קובץ BC1")
-                    detailed_logger.info("BC1 מוכן לניגון")
-                    
-            else:
+            # Validate extracted audio file
+            if not bundle.audio_file or not Path(bundle.audio_file).exists():
                 raise Exception("לא ניתן לחלץ אודיו מקובץ BC1")
+            
+            # Additional audio validation
+            from system.integrity_checker import MediaIntegrityChecker
+            audio_validation = MediaIntegrityChecker.validate_audio_file(bundle.audio_file)
+            if not audio_validation["valid"]:
+                raise Exception(f"אודיו שחולץ לא תקין: {audio_validation['error']}")
+            
+            self.status_label.setText("מוודא תקינות אודיו...")
+            
+            # Store bundle for cleanup later
+            self.current_bc1_bundle = bundle
+            
+            # Load the validated audio file into media player
+            self.current_file = bundle.audio_file
+            audio_url = QUrl.fromLocalFile(bundle.audio_file)
+            self.media_player.setSource(audio_url)
+            
+            # Mark temp file as locked (in use)
+            from system.integrity_checker import get_temp_manager
+            temp_manager = get_temp_manager()
+            temp_manager.mark_file_locked(bundle.audio_file)
+            
+            # Update UI with validated BC1 info
+            file_info = f"BC1: {Path(file_path).name}"
+            if bundle.segments:
+                file_info += f" ({len(bundle.segments)} קטעים)"
+            if audio_validation["duration"] > 0:
+                file_info += f" - {audio_validation['duration']:.1f}s"
+            
+            self.file_label.setText(file_info)
+            self.status_label.setText("קובץ BC1 נטען ומוכן לניגון")
+            
+            # Display transcript info with validation
+            if bundle.segments:
+                valid_segments = [s for s in bundle.segments if 
+                                isinstance(s, dict) and 
+                                'start_time' in s and 
+                                'end_time' in s and 
+                                'text' in s]
                 
+                if valid_segments:
+                    transcript_text = f"תמלול ({len(valid_segments)} קטעים תקינים):\n"
+                    for i, segment in enumerate(valid_segments[:3]):  # Show first 3
+                        transcript_text += f"{i+1}. [{segment['start_time']:.1f}-{segment['end_time']:.1f}s] {segment['text'][:50]}...\n"
+                    if len(valid_segments) > 3:
+                        transcript_text += f"... ועוד {len(valid_segments) - 3} קטעים"
+                    self.status_label.setText(transcript_text)
+                else:
+                    self.status_label.setText("BC1 נטען - תמלול לא תקין")
+            
+            if detailed_logger:
+                detailed_logger.end_operation("טעינת קובץ BC1")
+                detailed_logger.info(f"BC1 מוכן לניגון: {audio_validation['duration']:.1f}s @ {audio_validation['sample_rate']}Hz")
+                    
         except Exception as e:
             if detailed_logger:
                 detailed_logger.exception(f"שגיאה בטעינת BC1: {e}")
             self.status_label.setText(f"שגיאה בטעינת BC1: {e}")
-            QMessageBox.critical(self, "שגיאה", f"שגיאה בטעינת קובץ BC1:\n{e}")
+            
+            # Enhanced error dialog with details
+            error_msg = f"שגיאה בטעינת קובץ BC1:\n{e}\n\n"
+            error_msg += "ודא כי:\n"
+            error_msg += "• הקובץ הוא BC1 תקין\n"
+            error_msg += "• הקובץ לא פגום\n"
+            error_msg += "• יש מספיק מקום דיסק"
+            QMessageBox.critical(self, "שגיאה", error_msg)
     
     def _load_demo_bc1(self):
         """Load demo BC1 file."""
