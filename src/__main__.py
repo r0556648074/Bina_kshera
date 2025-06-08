@@ -30,95 +30,95 @@ def main():
         logger.info("התחלת נגן בינה כשרה")
         logger.log_system_info()
         logger.log_dependencies()
-        
+
         # Try revolutionary player first - the most advanced
         logger.info("מנסה לטעון נגן מהפכני עם עיצוב מתקדם")
-        
+
         try:
-            from ultra_modern_player import create_revolutionary_audio_app
+            from ui.rtl_modern_player import create_rtl_audio_app
             logger.start_operation("טעינת נגן מהפכני")
-            
-            app, window = create_revolutionary_audio_app()
+
+            app, window = create_rtl_audio_app()
             if app and window:
                 logger.end_operation("טעינת נגן מהפכני")
                 logger.start_operation("הרצת נגן מהפכני")
                 logger.info("נגן מהפכני מוכן ופועל")
-                
+
                 exit_code = app.exec()
                 logger.end_operation("הרצת נגן מהפכני")
                 logger.info(f"הנגן המהפכני הסתיים עם קוד: {exit_code}")
                 return exit_code
-                
+
         except Exception as e:
             logger.warning(f"שגיאה בנגן מהפכני: {e}")
-            
+
         # Try advanced player as second option
         try:
             from advanced_audio_app import create_advanced_audio_app
             logger.start_operation("טעינת נגן מתקדם")
-            
+
             app, window = create_advanced_audio_app()
             if app and window:
                 logger.end_operation("טעינת נגן מתקדם")
                 logger.start_operation("הרצת נגן מתקדם")
                 logger.info("נגן מתקדם מוכן ופועל")
-                
+
                 exit_code = app.exec()
                 logger.end_operation("הרצת נגן מתקדם")
                 logger.info(f"הנגן המתקדם הסתיים עם קוד: {exit_code}")
                 return exit_code
-                
+
         except Exception as e:
             logger.warning(f"שגיאה בנגן מתקדם: {e}")
-            
+
         # Simple player as last resort
         try:
             from simple_audio_app import create_simple_audio_app
             logger.start_operation("טעינת נגן פשוט")
-            
+
             app, window = create_simple_audio_app()
             if app and window:
                 logger.end_operation("טעינת נגן פשוט")
                 logger.start_operation("הרצת נגן פשוט")
                 logger.info("נגן פשוט מוכן ופועל")
-                
+
                 exit_code = app.exec()
                 logger.end_operation("הרצת נגן פשוט")
                 logger.info(f"הנגן הפשוט הסתיים עם קוד: {exit_code}")
                 return exit_code
-                
+
         except Exception as e:
             logger.warning(f"שגיאה בנגן פשוט: {e}")
-        
+
         # Fallback to simple interface
         logger.info("מתחיל ממשק יחיד ופשוט")
         logger.start_operation("טעינת ממשק")
-        
+
         try:
             from simple_audio_app import create_simple_audio_app
             logger.info("יוצר נגן אודיו פשוט ועובד")
-            
+
             app, window = create_simple_audio_app()
-            
+
             if app is None or window is None:
                 logger.error("יצירת נגן פשוט נכשלה")
                 return 1
-            
+
             logger.end_operation("טעינת ממשק")
             logger.start_operation("הרצת נגן פשוט")
             logger.info("נגן אודיו פשוט מוכן ופועל")
-            
+
             # Start the application event loop
             exit_code = app.exec()
             logger.end_operation("הרצת נגן פשוט")
             logger.info(f"הנגן הפשוט הסתיים עם קוד: {exit_code}")
             return exit_code
-            
+
         except Exception as e:
             logger.end_operation("טעינת ממשק")
             logger.exception(f"שגיאה בהפעלת הנגן הפשוט: {e}")
             return 1
-        
+
     except Exception as e:
         error_msg = f"שגיאה קריטית בהפעלת התוכנה: {e}"
         print(error_msg)
