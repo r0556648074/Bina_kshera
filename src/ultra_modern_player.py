@@ -24,12 +24,26 @@ from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 sys.path.insert(0, str(Path(__file__).parent))
 
 try:
-    from utils.logger import detailed_logger
-    from formats.bc1_format import open_bc1
+    from utils.logger import get_logger
+    detailed_logger = get_logger()
+except ImportError:
+    detailed_logger = None
+
+try:
+    from formats.bc1_format import open_bc1, create_demo_bc1
+except ImportError as e:
+    if detailed_logger:
+        detailed_logger.warning(f"שגיאה בייבוא BC1: {e}")
+    open_bc1 = None
+    create_demo_bc1 = None
+
+try:
     from performance.fast_loader import FastAudioLoader
 except ImportError as e:
-    detailed_logger = None
-    print(f"Import warning: {e}")
+    if detailed_logger:
+        detailed_logger.warning(f"שגיאה בייבוא FastAudioLoader: {e}")
+    # Create simple fallback
+    FastAudioLoader = None
 
 class UltraModernButton(QPushButton):
     """Revolutionary button with glass morphism and animations."""
@@ -851,13 +865,17 @@ class RevolutionaryAudioPlayer(QMainWindow):
             # Disable controls during loading
             self._set_controls_enabled(False)
 
-            # Use revolutionary fast loader
-            self.audio_loader = FastAudioLoader(file_path, is_bc1)
-            self.audio_loader.audio_loaded.connect(self._on_revolutionary_audio_loaded)
-            self.audio_loader.transcript_loaded.connect(self._on_revolutionary_transcript_loaded)
-            self.audio_loader.error_occurred.connect(self._on_revolutionary_error)
-            self.audio_loader.progress_updated.connect(self._on_revolutionary_progress)
-            self.audio_loader.start()
+            # Use revolutionary fast loader if available
+            if FastAudioLoader:
+                self.audio_loader = FastAudioLoader(file_path, is_bc1)
+                self.audio_loader.audio_loaded.connect(self._on_revolutionary_audio_loaded)
+                self.audio_loader.transcript_loaded.connect(self._on_revolutionary_transcript_loaded)
+                self.audio_loader.error_occurred.connect(self._on_revolutionary_error)
+                self.audio_loader.progress_updated.connect(self._on_revolutionary_progress)
+                self.audio_loader.start()
+            else:
+                # Fallback to direct loading
+                self._load_file_direct(file_path, is_bc1)
 
         except Exception as e:
             if detailed_logger:
@@ -1066,6 +1084,49 @@ class RevolutionaryAudioPlayer(QMainWindow):
         self.position_slider.setEnabled(enabled)
         self.volume_slider.setEnabled(enabled)
         self.speed_slider.setEnabled(enabled)
+
+    def _load_file_direct(self, file_path: str, is_bc1: bool):
+        """Direct file loading fallback."""
+        try:
+            if detailed_logger:
+                detailed_logger.info("טוען קובץ ישירות (ללא FastAudioLoader)")
+            
+            if is_bc1 and open_bc1:
+                # Load BC1 directly
+                with open(file_path, 'rb') as f:
+                    bc1_data = f.read()
+                from io import BytesIO
+                bundle = open_bc1(BytesIO(bc1_data))
+                
+                # Set up for media player
+                self.temp_audio_file = bundle.audio_file
+                self.media_player.setSource(QUrl.fromLocalFile(bundle.audio_file))
+                
+                # Update UI
+                file_name = Path(file_path).name
+                self.file_info_label.setText(f"🔐 {file_name} (BC1)")
+                
+                # Simulate loader signals
+                if bundle.segments:
+                    self._on_revolutionary_transcript_loaded(bundle.segments)
+                
+            else:
+                # Load regular audio directly
+                self.temp_audio_file = file_path
+                self.media_player.setSource(QUrl.fromLocalFile(file_path))
+                
+                # Update UI
+                file_name = Path(file_path).name
+                self.file_info_label.setText(f"🎵 {file_name}")
+            
+            self._set_controls_enabled(True)
+            self.status_label.setText("🎵 קובץ נטען ומוכן לניגון")
+            self.progress_bar.setVisible(False)
+            
+        except Exception as e:
+            if detailed_logger:
+                detailed_logger.exception(f"שגיאה בטעינה ישירה: {e}")
+            self._show_error(f"שגיאה בטעינת קובץ: {e}")
 
     def _show_error(self, message: str):
         """Revolutionary error display."""
